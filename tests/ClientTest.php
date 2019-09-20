@@ -4,14 +4,14 @@ namespace Orkhanahmadov\Currencylayer\Tests;
 
 use BlastCloud\Guzzler\UsesGuzzler;
 use GuzzleHttp\Psr7\Response;
-use Orkhanahmadov\Currencylayer\CurrencylayerClient;
+use Orkhanahmadov\Currencylayer\Currencylayer;
 
 class ClientTest extends TestCase
 {
     use UsesGuzzler;
 
     /**
-     * @var CurrencylayerClient
+     * @var Currencylayer
      */
     private $currencylayer;
 
@@ -19,7 +19,7 @@ class ClientTest extends TestCase
     {
         parent::setUp();
 
-        $this->currencylayer = new CurrencylayerClient('whatever');
+        $this->currencylayer = new Currencylayer('whatever');
         $this->currencylayer->setClient($this->guzzler->getClient(['base_uri' => self::API_HTTP_URL]));
     }
 

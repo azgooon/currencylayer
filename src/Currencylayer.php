@@ -4,7 +4,7 @@ namespace Orkhanahmadov\Currencylayer;
 
 use GuzzleHttp\Client as Guzzle;
 
-class CurrencylayerClient implements Client
+class Currencylayer implements Client
 {
     /**
      * @var Guzzle
