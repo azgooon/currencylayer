@@ -8,10 +8,10 @@
 [![License](https://img.shields.io/github/license/orkhanahmadov/currencylayer.svg)](https://github.com/orkhanahmadov/currencylayer/blob/master/LICENSE.md)
 
 [![Build Status](https://img.shields.io/travis/orkhanahmadov/currencylayer.svg)](https://travis-ci.org/orkhanahmadov/currencylayer)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/85b8405174a619e906e1/test_coverage)](https://codeclimate.com/github/orkhanahmadov/currencylayer/test_coverage)
-[![Maintainability](https://api.codeclimate.com/v1/badges/85b8405174a619e906e1/maintainability)](https://codeclimate.com/github/orkhanahmadov/currencylayer/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/a914e880498f0baf6b70/test_coverage)](https://codeclimate.com/github/orkhanahmadov/currencylayer/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/a914e880498f0baf6b70/maintainability)](https://codeclimate.com/github/orkhanahmadov/currencylayer/maintainability)
 [![Quality Score](https://img.shields.io/scrutinizer/g/orkhanahmadov/currencylayer.svg)](https://scrutinizer-ci.com/g/orkhanahmadov/currencylayer)
-[![StyleCI](https://github.styleci.io/repos/208126340/shield?branch=master)](https://github.styleci.io/repos/208126340)
+[![StyleCI](https://github.styleci.io/repos/209733029/shield?branch=master)](https://github.styleci.io/repos/209733029)
 
 Simple PHP client for currencylayer.com currency rates.
 
