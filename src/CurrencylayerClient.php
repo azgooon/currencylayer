@@ -51,17 +51,13 @@ class CurrencylayerClient implements Client
     }
 
     /**
-     * @param array<string>|string $currencies
+     * @param array<string> $currencies
      *
      * @return $this
      */
-    public function currencies($currencies): Client
+    public function currencies(array $currencies): Client
     {
-        if (is_array($currencies)) {
-            $this->currencies = implode(',', $currencies);
-        } else {
-            $this->currencies = $currencies;
-        }
+        $this->currencies = implode(',', $currencies);
 
         return $this;
     }
@@ -91,12 +87,20 @@ class CurrencylayerClient implements Client
             'query' => array_merge($query, ['access_key' => $this->accessKey]),
         ]);
 
-        $data = \GuzzleHttp\json_decode($response->getBody()->getContents());
+        $data = \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
 
         if (array_key_exists('error', $data)) {
-            throw new \InvalidArgumentException($data['error']['info'], $data['error']['code']);
+            throw new \InvalidArgumentException($data['error']['info']);
         }
 
         return $data;
+    }
+
+    /**
+     * @param Guzzle $client
+     */
+    public function setClient(Guzzle $client): void
+    {
+        $this->client = $client;
     }
 }

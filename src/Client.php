@@ -12,11 +12,11 @@ interface Client
     public function source(string $sourceCurrency): self;
 
     /**
-     * @param array<string>|string $currencies
+     * @param array<string> $currencies
      *
      * @return $this
      */
-    public function currencies($currencies): self;
+    public function currencies(array $currencies): self;
 
     /**
      * @return array
