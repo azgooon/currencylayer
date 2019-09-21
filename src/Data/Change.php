@@ -3,6 +3,7 @@
 namespace Orkhanahmadov\Currencylayer\Data;
 
 use Carbon\CarbonImmutable;
+use DateTimeImmutable;
 
 class Change
 {
@@ -15,11 +16,11 @@ class Change
      */
     private $quotes;
     /**
-     * @var CarbonImmutable
+     * @var DateTimeImmutable
      */
     private $startDate;
     /**
-     * @var CarbonImmutable
+     * @var DateTimeImmutable
      */
     private $endDate;
 
@@ -112,17 +113,17 @@ class Change
     }
 
     /**
-     * @return CarbonImmutable
+     * @return DateTimeImmutable
      */
-    public function getStartDate(): CarbonImmutable
+    public function getStartDate(): DateTimeImmutable
     {
         return $this->startDate;
     }
 
     /**
-     * @return CarbonImmutable
+     * @return DateTimeImmutable
      */
-    public function getEndDate(): CarbonImmutable
+    public function getEndDate(): DateTimeImmutable
     {
         return $this->endDate;
     }

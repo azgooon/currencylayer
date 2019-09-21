@@ -43,8 +43,7 @@ class LiveTest extends TestCase
         $this->assertInstanceOf(Quotes::class, $data);
         $this->assertSame('USD', $data->getSource());
         $this->assertCount(1, $data->getQuotes());
-        $this->assertInstanceOf(CarbonImmutable::class, $data->getTimestamp());
-        $this->assertSame(1432400348, $data->getTimestamp()->unix());
+        $this->assertSame(1432400348, $data->getTimestamp());
         $this->assertSame(1.278342, $data->EUR);
     }
 
@@ -65,7 +64,7 @@ class LiveTest extends TestCase
         $this->assertInstanceOf(Quotes::class, $data);
         $this->assertSame('USD', $data->getSource());
         $this->assertCount(2, $data->getQuotes());
-        $this->assertInstanceOf(CarbonImmutable::class, $data->getTimestamp());
+        $this->assertSame(1432400348, $data->getTimestamp());
         $this->assertSame(1.278342, $data->EUR);
         $this->assertSame(1.269072, $data->AUD);
     }

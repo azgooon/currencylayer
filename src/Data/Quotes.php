@@ -71,13 +71,11 @@ class Quotes
     }
 
     /**
-     * @throws \Exception
-     *
-     * @return DateTimeImmutable
+     * @return int
      */
-    public function getTimestamp(): DateTimeImmutable
+    public function getTimestamp(): int
     {
-        return new CarbonImmutable($this->timestamp);
+        return $this->timestamp;
     }
 
     /**

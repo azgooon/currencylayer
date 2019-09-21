@@ -45,8 +45,7 @@ class ConvertTest extends TestCase
         $this->assertSame('USD', $data->getFromCurrency());
         $this->assertSame('GBP', $data->getToCurrency());
         $this->assertSame(10, $data->getAmount());
-        $this->assertInstanceOf(CarbonImmutable::class, $data->getTimestamp());
-        $this->assertSame(1430068515, $data->getTimestamp()->unix());
+        $this->assertSame(1430068515, $data->getTimestamp());
         $this->assertSame(0.658443, $data->getQuote());
         $this->assertSame(6.58443, $data->getResult());
     }
@@ -71,8 +70,7 @@ class ConvertTest extends TestCase
         $this->assertSame('USD', $data->getFromCurrency());
         $this->assertSame('GBP', $data->getToCurrency());
         $this->assertSame(10, $data->getAmount());
-        $this->assertInstanceOf(CarbonImmutable::class, $data->getTimestamp());
-        $this->assertSame(1104623999, $data->getTimestamp()->unix());
+        $this->assertSame(1104623999, $data->getTimestamp());
         $this->assertSame(0.51961, $data->getQuote());
         $this->assertSame(5.1961, $data->getResult());
         $this->assertInstanceOf(CarbonImmutable::class, $data->getDate());

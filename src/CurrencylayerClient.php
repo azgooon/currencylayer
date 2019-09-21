@@ -22,25 +22,24 @@ class CurrencylayerClient implements Client
     private $accessKey;
     /**
      * @var string
-     * @todo: default to USD
      */
-    private $source;
+    private $source = 'USD';
     /**
      * @var string
      */
     private $currencies;
     /**
-     * @var DateTimeImmutable
+     * @var CarbonImmutable|DateTimeImmutable|null
      */
-    private $date;
+    private $date = null;
     /**
-     * @var CarbonImmutable|DateTimeImmutable|string
+     * @var CarbonImmutable|DateTimeImmutable|string|null
      */
-    private $startDate;
+    private $startDate = null;
     /**
-     * @var CarbonImmutable|DateTimeImmutable|string
+     * @var CarbonImmutable|DateTimeImmutable|string|null
      */
-    private $endDate;
+    private $endDate = null;
 
     /**
      * CurrencylayerClient constructor.

@@ -16,11 +16,15 @@ class Conversion
      */
     private $toCurrency;
     /**
+     * @var DateTimeImmutable|null
+     */
+    private $date = null;
+    /**
      * @var int|float
      */
     private $amount;
     /**
-     * @var CarbonImmutable
+     * @var int
      */
     private $timestamp;
     /**
@@ -31,10 +35,6 @@ class Conversion
      * @var float
      */
     private $result;
-    /**
-     * @var CarbonImmutable|null
-     */
-    private $date;
 
     /**
      * Conversion constructor.
@@ -50,7 +50,7 @@ class Conversion
         $this->amount = $data['query']['amount'];
         $this->quote = $data['info']['quote'];
         $this->result = $data['result'];
-        $this->timestamp = new CarbonImmutable($data['info']['timestamp']);
+        $this->timestamp = $data['info']['timestamp'];
         $this->date = isset($data['date']) ? new CarbonImmutable($data['date']) : null;
     }
 
@@ -71,6 +71,14 @@ class Conversion
     }
 
     /**
+     * @return CarbonImmutable|null
+     */
+    public function getDate(): ?CarbonImmutable
+    {
+        return $this->date;
+    }
+
+    /**
      * @return float|int
      */
     public function getAmount()
@@ -79,9 +87,9 @@ class Conversion
     }
 
     /**
-     * @return DateTimeImmutable
+     * @return int
      */
-    public function getTimestamp(): DateTimeImmutable
+    public function getTimestamp(): int
     {
         return $this->timestamp;
     }
@@ -100,13 +108,5 @@ class Conversion
     public function getResult(): float
     {
         return $this->result;
-    }
-
-    /**
-     * @return CarbonImmutable|null
-     */
-    public function getDate(): ?CarbonImmutable
-    {
-        return $this->date;
     }
 }
