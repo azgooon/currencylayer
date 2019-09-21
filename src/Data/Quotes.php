@@ -1,11 +1,11 @@
 <?php
 
-namespace Orkhanahmadov\Currencylayer;
+namespace Orkhanahmadov\Currencylayer\Data;
 
 use Carbon\CarbonImmutable;
 use DateTimeImmutable;
 
-class Currency
+class Quotes
 {
     /**
      * @var array

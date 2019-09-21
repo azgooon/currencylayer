@@ -5,6 +5,8 @@ namespace Orkhanahmadov\Currencylayer;
 use Carbon\CarbonImmutable;
 use DateTimeImmutable;
 use GuzzleHttp\Client as Guzzle;
+use Orkhanahmadov\Currencylayer\Data\Conversion;
+use Orkhanahmadov\Currencylayer\Data\Quotes;
 
 class CurrencylayerClient implements Client
 {
@@ -87,11 +89,11 @@ class CurrencylayerClient implements Client
     }
 
     /**
-     * @return Currency
+     * @return Quotes
      *
      * @throws \Exception
      */
-    public function quotes(): Currency
+    public function quotes(): Quotes
     {
         $query = [
             'currencies' => $this->currencies,
@@ -101,10 +103,10 @@ class CurrencylayerClient implements Client
         if ($this->date) {
             $query['date'] = $this->date->format('Y-m-d');
 
-            return new Currency($this->request('historical', $query));
+            return new Quotes($this->request('historical', $query));
         }
 
-        return new Currency($this->request('live', $query));
+        return new Quotes($this->request('live', $query));
     }
 
     /**

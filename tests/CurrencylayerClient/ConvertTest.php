@@ -5,9 +5,8 @@ namespace Orkhanahmadov\Currencylayer\Tests\CurrencylayerClient;
 use BlastCloud\Guzzler\UsesGuzzler;
 use Carbon\CarbonImmutable;
 use GuzzleHttp\Psr7\Response;
-use Orkhanahmadov\Currencylayer\Conversion;
-use Orkhanahmadov\Currencylayer\Currency;
 use Orkhanahmadov\Currencylayer\CurrencylayerClient;
+use Orkhanahmadov\Currencylayer\Data\Conversion;
 use Orkhanahmadov\Currencylayer\Tests\TestCase;
 
 class ConvertTest extends TestCase
@@ -43,8 +42,8 @@ class ConvertTest extends TestCase
         $data = $this->client->source('USD')->currencies('GBP')->convert(10);
 
         $this->assertInstanceOf(Conversion::class, $data);
-        $this->assertSame('USD', $data->getFrom());
-        $this->assertSame('GBP', $data->getTo());
+        $this->assertSame('USD', $data->getFromCurrency());
+        $this->assertSame('GBP', $data->getToCurrency());
         $this->assertSame(10, $data->getAmount());
         $this->assertInstanceOf(CarbonImmutable::class, $data->getTimestamp());
         $this->assertSame(1430068515, $data->getTimestamp()->unix());
@@ -69,8 +68,8 @@ class ConvertTest extends TestCase
         $data = $this->client->source('USD')->currencies('GBP')->date('2005-01-01')->convert(10);
 
         $this->assertInstanceOf(Conversion::class, $data);
-        $this->assertSame('USD', $data->getFrom());
-        $this->assertSame('GBP', $data->getTo());
+        $this->assertSame('USD', $data->getFromCurrency());
+        $this->assertSame('GBP', $data->getToCurrency());
         $this->assertSame(10, $data->getAmount());
         $this->assertInstanceOf(CarbonImmutable::class, $data->getTimestamp());
         $this->assertSame(1104623999, $data->getTimestamp()->unix());

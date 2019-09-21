@@ -1,0 +1,19 @@
+{
+    "success": true,
+    "terms": "https://currencylayer.com/terms",
+    "privacy": "https://currencylayer.com/privacy",
+    "timeframe": true,
+    "start_date": "2010-03-01",
+    "end_date": "2010-03-02",
+    "source": "USD",
+    "quotes": {
+        "2010-03-01": {
+            "USDGBP": 0.668525,
+            "USDEUR": 0.738541
+        },
+        "2010-03-02": {
+            "USDGBP": 0.668827,
+            "USDEUR": 0.736145
+        }
+    }
+}

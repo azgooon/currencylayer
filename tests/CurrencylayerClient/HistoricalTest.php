@@ -5,8 +5,8 @@ namespace Orkhanahmadov\Currencylayer\Tests\CurrencylayerClient;
 use BlastCloud\Guzzler\UsesGuzzler;
 use Carbon\CarbonImmutable;
 use GuzzleHttp\Psr7\Response;
-use Orkhanahmadov\Currencylayer\Currency;
 use Orkhanahmadov\Currencylayer\CurrencylayerClient;
+use Orkhanahmadov\Currencylayer\Data\Quotes;
 use Orkhanahmadov\Currencylayer\Tests\TestCase;
 
 class HistoricalTest extends TestCase
@@ -41,7 +41,7 @@ class HistoricalTest extends TestCase
 
         $data = $this->client->source('USD')->currencies('AED')->date('2005-02-01')->quotes();
 
-        $this->assertInstanceOf(Currency::class, $data);
+        $this->assertInstanceOf(Quotes::class, $data);
         $this->assertSame('USD', $data->getSource());
         $this->assertCount(1, $data->getQuotes());
         $this->assertInstanceOf(CarbonImmutable::class, $data->getTimestamp());
@@ -66,7 +66,7 @@ class HistoricalTest extends TestCase
 
         $data = $this->client->source('USD')->currencies(['AED', 'ALL'])->date('2005-02-01')->quotes();
 
-        $this->assertInstanceOf(Currency::class, $data);
+        $this->assertInstanceOf(Quotes::class, $data);
         $this->assertSame('USD', $data->getSource());
         $this->assertCount(2, $data->getQuotes());
         $this->assertInstanceOf(CarbonImmutable::class, $data->getTimestamp());

@@ -3,9 +3,7 @@
 namespace Orkhanahmadov\Currencylayer\Tests\CurrencylayerClient;
 
 use BlastCloud\Guzzler\UsesGuzzler;
-use Carbon\CarbonImmutable;
 use GuzzleHttp\Psr7\Response;
-use Orkhanahmadov\Currencylayer\Currency;
 use Orkhanahmadov\Currencylayer\CurrencylayerClient;
 use Orkhanahmadov\Currencylayer\Tests\TestCase;
 

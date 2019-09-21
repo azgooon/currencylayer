@@ -2,6 +2,9 @@
 
 namespace Orkhanahmadov\Currencylayer;
 
+use Orkhanahmadov\Currencylayer\Data\Conversion;
+use Orkhanahmadov\Currencylayer\Data\Quotes;
+
 interface Client
 {
     /**
@@ -26,9 +29,9 @@ interface Client
     public function date($date): self;
 
     /**
-     * @return Currency
+     * @return Quotes
      */
-    public function quotes(): Currency;
+    public function quotes(): Quotes;
 
     /**
      * @param int|float $amount

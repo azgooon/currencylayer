@@ -1,6 +1,6 @@
 <?php
 
-namespace Orkhanahmadov\Currencylayer;
+namespace Orkhanahmadov\Currencylayer\Data;
 
 use Carbon\CarbonImmutable;
 use DateTimeImmutable;
@@ -10,11 +10,11 @@ class Conversion
     /**
      * @var string
      */
-    private $from;
+    private $fromCurrency;
     /**
      * @var string
      */
-    private $to;
+    private $toCurrency;
     /**
      * @var int|float
      */
@@ -44,8 +44,8 @@ class Conversion
      */
     public function __construct(array $data)
     {
-        $this->from = $data['query']['from'];
-        $this->to = $data['query']['to'];
+        $this->fromCurrency = $data['query']['from'];
+        $this->toCurrency = $data['query']['to'];
         $this->amount = $data['query']['amount'];
         $this->quote = $data['info']['quote'];
         $this->result = $data['result'];
@@ -56,17 +56,17 @@ class Conversion
     /**
      * @return string
      */
-    public function getFrom(): string
+    public function getFromCurrency(): string
     {
-        return $this->from;
+        return $this->fromCurrency;
     }
 
     /**
      * @return string
      */
-    public function getTo(): string
+    public function getToCurrency(): string
     {
-        return $this->to;
+        return $this->toCurrency;
     }
 
     /**
