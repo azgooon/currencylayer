@@ -85,8 +85,8 @@ class Change
      */
     private function findKey(string $currency): string
     {
-        $key = $this->source . $currency;
-        if (! isset($this->quotes[$key])) {
+        $key = $this->source.$currency;
+        if (!isset($this->quotes[$key])) {
             throw new \InvalidArgumentException(
                 "{$currency} currencies is not available. Did you put it in request?"
             );

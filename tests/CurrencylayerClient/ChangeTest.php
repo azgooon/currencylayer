@@ -7,7 +7,6 @@ use Carbon\CarbonImmutable;
 use GuzzleHttp\Psr7\Response;
 use Orkhanahmadov\Currencylayer\CurrencylayerClient;
 use Orkhanahmadov\Currencylayer\Data\Change;
-use Orkhanahmadov\Currencylayer\Data\Timeframe;
 use Orkhanahmadov\Currencylayer\Tests\TestCase;
 
 class ChangeTest extends TestCase
