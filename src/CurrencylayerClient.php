@@ -95,7 +95,7 @@ class CurrencylayerClient implements Client
 
         $data = \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
 
-        if (array_key_exists('error', $data)) {
+        if (! $data['success']) {
             throw new \InvalidArgumentException($data['error']['info']);
         }
 

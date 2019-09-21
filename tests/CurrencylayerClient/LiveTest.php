@@ -87,4 +87,24 @@ class LiveTest extends TestCase
         $data = $this->client->source('USD')->currencies('EUR')->live();
         $data->ABC;
     }
+
+    public function testThrowsExceptionIfRequestFails()
+    {
+        $this->guzzler
+            ->expects($this->once())
+            ->get(self::API_HTTP_URL . 'live')
+            ->withQuery([
+                'access_key' => self::FAKE_ACCESS_KEY,
+                'source' => 'USD',
+                'currencies' => 'EUR',
+            ])
+            ->willRespond(new Response(200, [], $this->jsonFixture('error')));
+
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            'You have not supplied a valid API Access Key. [Technical Support: support@apilayer.com]'
+        );
+
+        $this->client->source('USD')->currencies('EUR')->live();
+    }
 }
