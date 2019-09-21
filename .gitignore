@@ -4,6 +4,7 @@ composer.lock
 docs
 vendor
 coverage
+.DS_Store
 phpunit.xml
 .php_cs.cache
 .phpunit.result.cache
