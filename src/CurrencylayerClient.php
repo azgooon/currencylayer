@@ -5,6 +5,7 @@ namespace Orkhanahmadov\Currencylayer;
 use Carbon\CarbonImmutable;
 use DateTimeImmutable;
 use GuzzleHttp\Client as Guzzle;
+use Orkhanahmadov\Currencylayer\Data\Change;
 use Orkhanahmadov\Currencylayer\Data\Conversion;
 use Orkhanahmadov\Currencylayer\Data\Quotes;
 use Orkhanahmadov\Currencylayer\Data\Timeframe;
@@ -184,6 +185,23 @@ class CurrencylayerClient implements Client
         ]);
 
         return new Timeframe($data);
+    }
+
+    /**
+     * @return Change
+     *
+     * @throws \Exception
+     */
+    public function change(): Change
+    {
+        $data = $this->request('change', [
+            'source'     => $this->source,
+            'currencies' => $this->currencies,
+            'start_date' => $this->startDate->format('Y-m-d'),
+            'end_date'   => $this->endDate->format('Y-m-d'),
+        ]);
+
+        return new Change($data);
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace Orkhanahmadov\Currencylayer;
 
+use Orkhanahmadov\Currencylayer\Data\Change;
 use Orkhanahmadov\Currencylayer\Data\Conversion;
 use Orkhanahmadov\Currencylayer\Data\Quotes;
 use Orkhanahmadov\Currencylayer\Data\Timeframe;
@@ -59,4 +60,9 @@ interface Client
      * @return Timeframe
      */
     public function timeframe(): Timeframe;
+
+    /**
+     * @return Change
+     */
+    public function change(): Change;
 }

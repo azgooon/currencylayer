@@ -6,6 +6,7 @@ use BlastCloud\Guzzler\UsesGuzzler;
 use Carbon\CarbonImmutable;
 use GuzzleHttp\Psr7\Response;
 use Orkhanahmadov\Currencylayer\CurrencylayerClient;
+use Orkhanahmadov\Currencylayer\Data\Change;
 use Orkhanahmadov\Currencylayer\Data\Timeframe;
 use Orkhanahmadov\Currencylayer\Tests\TestCase;
 
@@ -38,7 +39,7 @@ class ChangeTest extends TestCase
                 'source'     => 'USD',
                 'currencies' => 'AUD,EUR,MXN',
             ])
-            ->willRespond(new Response(200, [], $this->jsonFixture('timeframe')));
+            ->willRespond(new Response(200, [], $this->jsonFixture('change')));
 
         $data = $this->client->source('USD')
             ->currencies('AUD,EUR,MXN')
@@ -49,6 +50,10 @@ class ChangeTest extends TestCase
         $this->assertInstanceOf(Change::class, $data);
         $this->assertSame('USD', $data->getSource());
         $this->assertCount(3, $data->getQuotes());
+        $this->assertInstanceOf(CarbonImmutable::class, $data->getStartDate());
+        $this->assertSame('2005-01-01', $data->getStartDate()->format('Y-m-d'));
+        $this->assertInstanceOf(CarbonImmutable::class, $data->getEndDate());
+        $this->assertSame('2010-01-01', $data->getEndDate()->format('Y-m-d'));
         $this->assertSame(1.281236, $data->startRate('AUD'));
         $this->assertSame(1.108609, $data->endRate('AUD'));
         $this->assertSame(-0.1726, $data->change('AUD'));
@@ -57,9 +62,5 @@ class ChangeTest extends TestCase
         $this->assertSame(13.108757, $data->endRate('MXN'));
         $this->assertSame(1.9594, $data->change('MXN'));
         $this->assertSame(17.5741, $data->changePercentage('MXN'));
-        $this->assertInstanceOf(CarbonImmutable::class, $data->getStartDate());
-        $this->assertSame('2005-01-01', $data->getStartDate()->format('Y-m-d'));
-        $this->assertInstanceOf(CarbonImmutable::class, $data->getEndDate());
-        $this->assertSame('2010-01-01', $data->getEndDate()->format('Y-m-d'));
     }
 }
