@@ -6,7 +6,6 @@ use BlastCloud\Guzzler\UsesGuzzler;
 use Carbon\CarbonImmutable;
 use GuzzleHttp\Psr7\Response;
 use Orkhanahmadov\Currencylayer\CurrencylayerClient;
-use Orkhanahmadov\Currencylayer\Data\Quotes;
 use Orkhanahmadov\Currencylayer\Data\Timeframe;
 use Orkhanahmadov\Currencylayer\Tests\TestCase;
 
@@ -31,12 +30,12 @@ class TimeframeTest extends TestCase
     {
         $this->guzzler
             ->expects($this->once())
-            ->get(self::API_HTTP_URL . 'timeframe')
+            ->get(self::API_HTTP_URL.'timeframe')
             ->withQuery([
                 'access_key' => self::FAKE_ACCESS_KEY,
                 'start_date' => '2010-03-01',
-                'end_date' => '2010-03-02',
-                'source' => 'USD',
+                'end_date'   => '2010-03-02',
+                'source'     => 'USD',
                 'currencies' => 'GBP,EUR',
             ])
             ->willRespond(new Response(200, [], $this->jsonFixture('timeframe')));

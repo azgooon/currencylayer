@@ -73,9 +73,9 @@ class Timeframe
     /**
      * @param \DateTimeImmutable|string $date
      *
-     * @return array
-     *
      * @throws \Exception
+     *
+     * @return array
      */
     public function for($date): array
     {
@@ -83,7 +83,7 @@ class Timeframe
             $date->format('Y-m-d') :
             (new CarbonImmutable($date))->format('Y-m-d');
 
-        if (! isset($this->quotes[$date])) {
+        if (!isset($this->quotes[$date])) {
             throw new \InvalidArgumentException(
                 "Quotes for {$date} is not available. Did you put it in request?"
             );
@@ -100,14 +100,14 @@ class Timeframe
      */
     public function __call(string $name, $arguments): float
     {
-        if (! isset($arguments[0])) {
+        if (!isset($arguments[0])) {
             throw new \InvalidArgumentException(
                 "{$name} method doesn't exist."
             );
         }
 
-        $key = $this->source . $name;
-        if (! isset($this->quotes[$arguments[0]]) || ! isset($this->quotes[$arguments[0]][$key])) {
+        $key = $this->source.$name;
+        if (!isset($this->quotes[$arguments[0]]) || !isset($this->quotes[$arguments[0]][$key])) {
             throw new \InvalidArgumentException(
                 "{$this->source} -> {$name} quotes for {$arguments[0]} is not available. Did you put it in request?"
             );

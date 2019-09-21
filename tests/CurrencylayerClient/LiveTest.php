@@ -30,10 +30,10 @@ class LiveTest extends TestCase
     {
         $this->guzzler
             ->expects($this->once())
-            ->get(self::API_HTTP_URL . 'live')
+            ->get(self::API_HTTP_URL.'live')
             ->withQuery([
                 'access_key' => self::FAKE_ACCESS_KEY,
-                'source' => 'USD',
+                'source'     => 'USD',
                 'currencies' => 'EUR',
             ])
             ->willRespond(new Response(200, [], $this->jsonFixture('live/single')));
@@ -52,10 +52,10 @@ class LiveTest extends TestCase
     {
         $this->guzzler
             ->expects($this->once())
-            ->get(self::API_HTTP_URL . 'live')
+            ->get(self::API_HTTP_URL.'live')
             ->withQuery([
                 'access_key' => self::FAKE_ACCESS_KEY,
-                'source' => 'USD',
+                'source'     => 'USD',
                 'currencies' => 'EUR,AUD',
             ])
             ->willRespond(new Response(200, [], $this->jsonFixture('live/multiple')));
@@ -74,10 +74,10 @@ class LiveTest extends TestCase
     {
         $this->guzzler
             ->expects($this->once())
-            ->get(self::API_HTTP_URL . 'live')
+            ->get(self::API_HTTP_URL.'live')
             ->withQuery([
                 'access_key' => self::FAKE_ACCESS_KEY,
-                'source' => 'USD',
+                'source'     => 'USD',
                 'currencies' => 'EUR',
             ])
             ->willRespond(new Response(200, [], $this->jsonFixture('live/single')));

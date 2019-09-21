@@ -45,12 +45,12 @@ class CurrencylayerClient implements Client
      * CurrencylayerClient constructor.
      *
      * @param string $accessKey
-     * @param bool $useHttps
+     * @param bool   $useHttps
      */
     public function __construct(string $accessKey, bool $useHttps = false)
     {
         $this->client = new Guzzle([
-            'base_uri' => $useHttps ? 'https://apilayer.net/api/' : 'http://apilayer.net/api/'
+            'base_uri' => $useHttps ? 'https://apilayer.net/api/' : 'http://apilayer.net/api/',
         ]);
 
         $this->accessKey = $accessKey;
@@ -87,9 +87,9 @@ class CurrencylayerClient implements Client
     /**
      * @param DateTimeImmutable|string $date
      *
-     * @return $this
-     *
      * @throws \Exception
+     *
+     * @return $this
      */
     public function date($date): Client
     {
@@ -101,9 +101,9 @@ class CurrencylayerClient implements Client
     /**
      * @param \DateTimeImmutable|string $date
      *
-     * @return $this
-     *
      * @throws \Exception
+     *
+     * @return $this
      */
     public function startDate($date): Client
     {
@@ -115,9 +115,9 @@ class CurrencylayerClient implements Client
     /**
      * @param \DateTimeImmutable|string $date
      *
-     * @return $this
-     *
      * @throws \Exception
+     *
+     * @return $this
      */
     public function endDate($date): Client
     {
@@ -127,15 +127,15 @@ class CurrencylayerClient implements Client
     }
 
     /**
-     * @return Quotes
-     *
      * @throws \Exception
+     *
+     * @return Quotes
      */
     public function quotes(): Quotes
     {
         $query = [
             'currencies' => $this->currencies,
-            'source' => $this->source,
+            'source'     => $this->source,
         ];
 
         if ($this->date) {
@@ -150,15 +150,15 @@ class CurrencylayerClient implements Client
     /**
      * @param int|float $amount
      *
-     * @return Conversion
-     *
      * @throws \Exception
+     *
+     * @return Conversion
      */
     public function convert($amount): Conversion
     {
         $query = [
-            'from' => $this->source,
-            'to' => $this->currencies,
+            'from'   => $this->source,
+            'to'     => $this->currencies,
             'amount' => $amount,
         ];
 
@@ -170,27 +170,25 @@ class CurrencylayerClient implements Client
     }
 
     /**
-     * @return Timeframe
-     *
      * @throws \Exception
+     *
+     * @return Timeframe
      */
     public function timeframe(): Timeframe
     {
         $data = $this->request('timeframe', [
-            'source' => $this->source,
+            'source'     => $this->source,
             'currencies' => $this->currencies,
             'start_date' => $this->startDate->format('Y-m-d'),
-            'end_date' => $this->endDate->format('Y-m-d'),
+            'end_date'   => $this->endDate->format('Y-m-d'),
         ]);
 
         return new Timeframe($data);
     }
 
     /**
-     *
-     *
      * @param string $endpoint
-     * @param array $query
+     * @param array  $query
      *
      * @return array
      */
@@ -202,7 +200,7 @@ class CurrencylayerClient implements Client
 
         $data = \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
 
-        if (! $data['success']) {
+        if (!$data['success']) {
             throw new \InvalidArgumentException($data['error']['info']);
         }
 
