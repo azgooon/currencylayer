@@ -38,7 +38,7 @@ class LiveTest extends TestCase
             ])
             ->willRespond(new Response(200, [], $this->jsonFixture('live/single')));
 
-        $data = $this->client->source('USD')->currencies('EUR')->live();
+        $data = $this->client->source('USD')->currencies('EUR')->quotes();
 
         $this->assertInstanceOf(Currency::class, $data);
         $this->assertSame('USD', $data->getSource());
@@ -60,7 +60,7 @@ class LiveTest extends TestCase
             ])
             ->willRespond(new Response(200, [], $this->jsonFixture('live/multiple')));
 
-        $data = $this->client->source('USD')->currencies(['EUR', 'AUD'])->live();
+        $data = $this->client->source('USD')->currencies(['EUR', 'AUD'])->quotes();
 
         $this->assertInstanceOf(Currency::class, $data);
         $this->assertSame('USD', $data->getSource());
@@ -85,7 +85,7 @@ class LiveTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('ABC does not exist in API response. Did you requested it?');
 
-        $data = $this->client->source('USD')->currencies('EUR')->live();
+        $data = $this->client->source('USD')->currencies('EUR')->quotes();
         $data->ABC;
     }
 }

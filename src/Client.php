@@ -31,16 +31,6 @@ interface Client
     public function quotes(): Currency;
 
     /**
-     * @return Currency
-     */
-    public function live(): Currency;
-
-    /**
-     * @return Currency
-     */
-    public function historical(): Currency;
-
-    /**
      * @param int|float $amount
      *
      * @return Conversion

@@ -91,37 +91,6 @@ class CurrencylayerClient implements Client
      *
      * @throws \Exception
      */
-    public function live(): Currency
-    {
-        $data = $this->request('live', [
-            'currencies' => $this->currencies,
-            'source' => $this->source,
-        ]);
-
-        return new Currency($data);
-    }
-
-    /**
-     * @return Currency
-     *
-     * @throws \Exception
-     */
-    public function historical(): Currency
-    {
-        $data = $this->request('historical', [
-            'date' => $this->date->format('Y-m-d'),
-            'currencies' => $this->currencies,
-            'source' => $this->source,
-        ]);
-
-        return new Currency($data);
-    }
-
-    /**
-     * @return Currency
-     *
-     * @throws \Exception
-     */
     public function quotes(): Currency
     {
         $query = [

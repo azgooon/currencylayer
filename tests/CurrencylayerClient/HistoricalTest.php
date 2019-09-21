@@ -39,7 +39,7 @@ class HistoricalTest extends TestCase
             ])
             ->willRespond(new Response(200, [], $this->jsonFixture('historical/single')));
 
-        $data = $this->client->source('USD')->currencies('AED')->date('2005-02-01')->historical();
+        $data = $this->client->source('USD')->currencies('AED')->date('2005-02-01')->quotes();
 
         $this->assertInstanceOf(Currency::class, $data);
         $this->assertSame('USD', $data->getSource());
@@ -64,7 +64,7 @@ class HistoricalTest extends TestCase
             ])
             ->willRespond(new Response(200, [], $this->jsonFixture('historical/multiple')));
 
-        $data = $this->client->source('USD')->currencies(['AED', 'ALL'])->date('2005-02-01')->historical();
+        $data = $this->client->source('USD')->currencies(['AED', 'ALL'])->date('2005-02-01')->quotes();
 
         $this->assertInstanceOf(Currency::class, $data);
         $this->assertSame('USD', $data->getSource());
