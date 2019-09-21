@@ -28,6 +28,11 @@ interface Client
     /**
      * @return Currency
      */
+    public function quotes(): Currency;
+
+    /**
+     * @return Currency
+     */
     public function live(): Currency;
 
     /**

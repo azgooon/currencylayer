@@ -118,6 +118,27 @@ class CurrencylayerClient implements Client
     }
 
     /**
+     * @return Currency
+     *
+     * @throws \Exception
+     */
+    public function quotes(): Currency
+    {
+        $query = [
+            'currencies' => $this->currencies,
+            'source' => $this->source,
+        ];
+
+        if ($this->date) {
+            $query['date'] = $this->date->format('Y-m-d');
+
+            return new Currency($this->request('historical', $query));
+        }
+
+        return new Currency($this->request('live', $query));
+    }
+
+    /**
      * @param int|float $amount
      *
      * @return Conversion
@@ -126,15 +147,17 @@ class CurrencylayerClient implements Client
      */
     public function convert($amount): Conversion
     {
-
-        $response = $this->request('convert', [
-            'date' => $this->date ? $this->date->format('Y-m-d') : null,
+        $query = [
             'from' => $this->source,
             'to' => $this->currencies,
             'amount' => $amount,
-        ]);
+        ];
 
-        return new Conversion($response);
+        if ($this->date) {
+            $query['date'] = $this->date->format('Y-m-d');
+        }
+
+        return new Conversion($this->request('convert', $query));
     }
 
     /**
