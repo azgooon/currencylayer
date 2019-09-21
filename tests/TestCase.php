@@ -8,6 +8,7 @@ abstract class TestCase extends PHPUnit
 {
     const API_HTTP_URL = 'http://apilayer.net/api/';
     const API_HTTPS_URL = 'https://apilayer.net/api/';
+    const FAKE_ACCESS_KEY = 'whatever';
 
     protected function jsonFixture(string $fileName)
     {

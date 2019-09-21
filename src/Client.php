@@ -16,12 +16,12 @@ interface Client
      *
      * @return $this
      */
-    public function currencies(array $currencies): self;
+    public function currencies($currencies): self;
 
     /**
-     * @return array
+     * @return Currency
      */
-    public function live(): array;
+    public function live(): Currency;
 
 //    public function date($currencies): self;
 //

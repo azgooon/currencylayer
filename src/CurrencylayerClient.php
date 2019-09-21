@@ -51,26 +51,32 @@ class CurrencylayerClient implements Client
     }
 
     /**
-     * @param array<string> $currencies
+     * @param array<string>|string $currencies
      *
      * @return $this
      */
-    public function currencies(array $currencies): Client
+    public function currencies($currencies): Client
     {
-        $this->currencies = implode(',', $currencies);
+        if (is_array($currencies)) {
+            $this->currencies = implode(',', $currencies);
+        } else {
+            $this->currencies = $currencies;
+        }
 
         return $this;
     }
 
     /**
-     * @return array
+     * @return Currency
      */
-    public function live(): array
+    public function live(): Currency
     {
-        return $this->request('live', [
+        $data = $this->request('live', [
             'currencies' => $this->currencies,
             'source' => $this->source,
         ]);
+
+        return new Currency($data['quotes'], $data['source'], $data['timestamp']);
     }
 
     /**
