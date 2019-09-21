@@ -40,6 +40,7 @@ class Conversion
      * Conversion constructor.
      *
      * @param array $data
+     *
      * @throws \Exception
      */
     public function __construct(array $data)

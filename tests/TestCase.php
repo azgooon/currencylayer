@@ -12,6 +12,6 @@ abstract class TestCase extends PHPUnit
 
     protected function jsonFixture(string $fileName)
     {
-        return file_get_contents(__DIR__ . '/__fixtures__/' . $fileName . '.json');
+        return file_get_contents(__DIR__.'/__fixtures__/'.$fileName.'.json');
     }
 }

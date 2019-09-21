@@ -46,8 +46,8 @@ class Quotes
      */
     public function __get(string $name): float
     {
-        $key = $this->source . $name;
-        if (! array_key_exists($key, $this->quotes)) {
+        $key = $this->source.$name;
+        if (!array_key_exists($key, $this->quotes)) {
             throw new \InvalidArgumentException("{$name} does not exist in API response. Did you put it in request?");
         }
 
@@ -71,8 +71,9 @@ class Quotes
     }
 
     /**
-     * @return DateTimeImmutable
      * @throws \Exception
+     *
+     * @return DateTimeImmutable
      */
     public function getTimestamp(): DateTimeImmutable
     {

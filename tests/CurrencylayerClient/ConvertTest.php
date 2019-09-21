@@ -30,12 +30,12 @@ class ConvertTest extends TestCase
     {
         $this->guzzler
             ->expects($this->once())
-            ->get(self::API_HTTP_URL . 'convert')
+            ->get(self::API_HTTP_URL.'convert')
             ->withQuery([
                 'access_key' => self::FAKE_ACCESS_KEY,
-                'from' => 'USD',
-                'to' => 'GBP',
-                'amount' => 10,
+                'from'       => 'USD',
+                'to'         => 'GBP',
+                'amount'     => 10,
             ])
             ->willRespond(new Response(200, [], $this->jsonFixture('convert/live')));
 
@@ -55,13 +55,13 @@ class ConvertTest extends TestCase
     {
         $this->guzzler
             ->expects($this->once())
-            ->get(self::API_HTTP_URL . 'convert')
+            ->get(self::API_HTTP_URL.'convert')
             ->withQuery([
                 'access_key' => self::FAKE_ACCESS_KEY,
-                'date' => '2005-01-01',
-                'from' => 'USD',
-                'to' => 'GBP',
-                'amount' => 10,
+                'date'       => '2005-01-01',
+                'from'       => 'USD',
+                'to'         => 'GBP',
+                'amount'     => 10,
             ])
             ->willRespond(new Response(200, [], $this->jsonFixture('convert/historical')));
 

@@ -18,10 +18,10 @@ class RequestTest extends TestCase
 
         $this->guzzler
             ->expects($this->once())
-            ->get(self::API_HTTPS_URL . 'live')
+            ->get(self::API_HTTPS_URL.'live')
             ->withQuery([
                 'access_key' => self::FAKE_ACCESS_KEY,
-                'source' => 'USD',
+                'source'     => 'USD',
                 'currencies' => 'EUR',
             ])
             ->willRespond(new Response(200, [], $this->jsonFixture('live/single')));
@@ -36,10 +36,10 @@ class RequestTest extends TestCase
 
         $this->guzzler
             ->expects($this->once())
-            ->get(self::API_HTTP_URL . 'live')
+            ->get(self::API_HTTP_URL.'live')
             ->withQuery([
                 'access_key' => self::FAKE_ACCESS_KEY,
-                'source' => 'USD',
+                'source'     => 'USD',
                 'currencies' => 'EUR',
             ])
             ->willRespond(new Response(200, [], $this->jsonFixture('error')));

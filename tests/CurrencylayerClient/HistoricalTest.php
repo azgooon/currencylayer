@@ -30,11 +30,11 @@ class HistoricalTest extends TestCase
     {
         $this->guzzler
             ->expects($this->once())
-            ->get(self::API_HTTP_URL . 'historical')
+            ->get(self::API_HTTP_URL.'historical')
             ->withQuery([
                 'access_key' => self::FAKE_ACCESS_KEY,
-                'date' => '2005-02-01',
-                'source' => 'USD',
+                'date'       => '2005-02-01',
+                'source'     => 'USD',
                 'currencies' => 'AED',
             ])
             ->willRespond(new Response(200, [], $this->jsonFixture('historical/single')));
@@ -55,11 +55,11 @@ class HistoricalTest extends TestCase
     {
         $this->guzzler
             ->expects($this->once())
-            ->get(self::API_HTTP_URL . 'historical')
+            ->get(self::API_HTTP_URL.'historical')
             ->withQuery([
                 'access_key' => self::FAKE_ACCESS_KEY,
-                'date' => '2005-02-01',
-                'source' => 'USD',
+                'date'       => '2005-02-01',
+                'source'     => 'USD',
                 'currencies' => 'AED,ALL',
             ])
             ->willRespond(new Response(200, [], $this->jsonFixture('historical/multiple')));
