@@ -1,0 +1,29 @@
+{
+    "success": true,
+    "terms": "https://currencylayer.com/terms",
+    "privacy": "https://currencylayer.com/privacy",
+    "change": true,
+    "start_date": "2005-01-01",
+    "end_date": "2010-01-01",
+    "source": "USD",
+    "quotes": {
+        "USDAUD": {
+            "start_rate": 1.281236,
+            "end_rate": 1.108609,
+            "change": -0.1726,
+            "change_pct": -13.4735
+        },
+        "USDEUR": {
+            "start_rate": 0.73618,
+            "end_rate": 0.697253,
+            "change": -0.0389,
+            "change_pct": -5.2877
+        },
+        "USDMXN":{
+            "start_rate": 11.149362,
+            "end_rate": 13.108757,
+            "change": 1.9594,
+            "change_pct": 17.5741
+        }
+    }
+}
