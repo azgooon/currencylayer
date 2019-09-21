@@ -3,7 +3,6 @@
 namespace Orkhanahmadov\Currencylayer\Data;
 
 use Carbon\CarbonImmutable;
-use DateTimeImmutable;
 
 class Conversion
 {
@@ -16,7 +15,7 @@ class Conversion
      */
     private $toCurrency;
     /**
-     * @var DateTimeImmutable|null
+     * @var \DateTimeImmutable|null
      */
     private $date = null;
     /**
@@ -71,9 +70,9 @@ class Conversion
     }
 
     /**
-     * @return CarbonImmutable|null
+     * @return \DateTimeImmutable|null
      */
-    public function getDate(): ?CarbonImmutable
+    public function getDate(): ?\DateTimeImmutable
     {
         return $this->date;
     }

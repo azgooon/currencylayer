@@ -3,7 +3,6 @@
 namespace Orkhanahmadov\Currencylayer;
 
 use Carbon\CarbonImmutable;
-use DateTimeImmutable;
 use GuzzleHttp\Client as Guzzle;
 use Orkhanahmadov\Currencylayer\Data\Change;
 use Orkhanahmadov\Currencylayer\Data\Conversion;
@@ -29,15 +28,15 @@ class CurrencylayerClient implements Client
      */
     private $currencies;
     /**
-     * @var CarbonImmutable|DateTimeImmutable|null
+     * @var \DateTimeImmutable|null
      */
     private $date = null;
     /**
-     * @var CarbonImmutable|DateTimeImmutable|string|null
+     * @var \DateTimeImmutable|string|null
      */
     private $startDate = null;
     /**
-     * @var CarbonImmutable|DateTimeImmutable|string|null
+     * @var \DateTimeImmutable|string|null
      */
     private $endDate = null;
 
@@ -85,7 +84,7 @@ class CurrencylayerClient implements Client
     }
 
     /**
-     * @param DateTimeImmutable|string $date
+     * @param \DateTimeImmutable|string $date
      *
      * @throws \Exception
      *
@@ -93,7 +92,7 @@ class CurrencylayerClient implements Client
      */
     public function date($date): Client
     {
-        $this->date = $date instanceof DateTimeImmutable ? $date : new CarbonImmutable($date);
+        $this->date = $date instanceof \DateTimeImmutable ? $date : new CarbonImmutable($date);
 
         return $this;
     }
@@ -107,7 +106,7 @@ class CurrencylayerClient implements Client
      */
     public function startDate($date): Client
     {
-        $this->startDate = $date instanceof DateTimeImmutable ? $date : new CarbonImmutable($date);
+        $this->startDate = $date instanceof \DateTimeImmutable ? $date : new CarbonImmutable($date);
 
         return $this;
     }
@@ -121,7 +120,7 @@ class CurrencylayerClient implements Client
      */
     public function endDate($date): Client
     {
-        $this->endDate = $date instanceof DateTimeImmutable ? $date : new CarbonImmutable($date);
+        $this->endDate = $date instanceof \DateTimeImmutable ? $date : new CarbonImmutable($date);
 
         return $this;
     }

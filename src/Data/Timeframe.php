@@ -15,11 +15,11 @@ class Timeframe
      */
     private $quotes;
     /**
-     * @var CarbonImmutable
+     * @var \DateTimeImmutable
      */
     private $startDate;
     /**
-     * @var CarbonImmutable
+     * @var \DateTimeImmutable
      */
     private $endDate;
 
@@ -55,17 +55,17 @@ class Timeframe
     }
 
     /**
-     * @return CarbonImmutable
+     * @return \DateTimeImmutable
      */
-    public function getStartDate(): CarbonImmutable
+    public function getStartDate(): \DateTimeImmutable
     {
         return $this->startDate;
     }
 
     /**
-     * @return CarbonImmutable
+     * @return \DateTimeImmutable
      */
-    public function getEndDate(): CarbonImmutable
+    public function getEndDate(): \DateTimeImmutable
     {
         return $this->endDate;
     }

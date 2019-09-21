@@ -19,9 +19,9 @@ class Quotes
      */
     private $timestamp;
     /**
-     * @var CarbonImmutable|null
+     * @var \DateTimeImmutable|null
      */
-    private $date;
+    private $date = null;
 
     /**
      * Currency constructor.
@@ -78,9 +78,9 @@ class Quotes
     }
 
     /**
-     * @return CarbonImmutable|null
+     * @return \DateTimeImmutable|null
      */
-    public function getDate(): ?CarbonImmutable
+    public function getDate(): ?\DateTimeImmutable
     {
         return $this->date;
     }
