@@ -7,6 +7,7 @@ use Carbon\CarbonImmutable;
 use GuzzleHttp\Psr7\Response;
 use Orkhanahmadov\Currencylayer\CurrencylayerClient;
 use Orkhanahmadov\Currencylayer\Data\Quotes;
+use Orkhanahmadov\Currencylayer\Data\Timeframe;
 use Orkhanahmadov\Currencylayer\Tests\TestCase;
 
 class TimeframeTest extends TestCase
@@ -35,6 +36,7 @@ class TimeframeTest extends TestCase
                 'access_key' => self::FAKE_ACCESS_KEY,
                 'start_date' => '2010-03-01',
                 'end_date' => '2010-03-02',
+                'source' => 'USD',
                 'currencies' => 'GBP,EUR',
             ])
             ->willRespond(new Response(200, [], $this->jsonFixture('timeframe')));
@@ -47,9 +49,10 @@ class TimeframeTest extends TestCase
 
         $this->assertInstanceOf(Timeframe::class, $data);
         $this->assertSame('USD', $data->getSource());
-        $this->assertSame(0.668525, $data->GBP('2010-03-01'));
-        $this->assertCount(2, $data->for('2010-03-01'));
         $this->assertCount(2, $data->getQuotes());
+        $this->assertSame(0.668525, $data->GBP('2010-03-01'));
+        $this->assertSame(0.736145, $data->EUR('2010-03-02'));
+        $this->assertCount(2, $data->for('2010-03-01'));
         $this->assertInstanceOf(CarbonImmutable::class, $data->getStartDate());
         $this->assertSame('2010-03-01', $data->getStartDate()->format('Y-m-d'));
         $this->assertInstanceOf(CarbonImmutable::class, $data->getEndDate());

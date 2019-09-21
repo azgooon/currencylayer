@@ -7,6 +7,7 @@ use DateTimeImmutable;
 use GuzzleHttp\Client as Guzzle;
 use Orkhanahmadov\Currencylayer\Data\Conversion;
 use Orkhanahmadov\Currencylayer\Data\Quotes;
+use Orkhanahmadov\Currencylayer\Data\Timeframe;
 
 class CurrencylayerClient implements Client
 {
@@ -20,6 +21,7 @@ class CurrencylayerClient implements Client
     private $accessKey;
     /**
      * @var string
+     * @todo: default to USD
      */
     private $source;
     /**
@@ -30,6 +32,14 @@ class CurrencylayerClient implements Client
      * @var DateTimeImmutable
      */
     private $date;
+    /**
+     * @var CarbonImmutable|DateTimeImmutable|string
+     */
+    private $startDate;
+    /**
+     * @var CarbonImmutable|DateTimeImmutable|string
+     */
+    private $endDate;
 
     /**
      * CurrencylayerClient constructor.
@@ -89,6 +99,34 @@ class CurrencylayerClient implements Client
     }
 
     /**
+     * @param \DateTimeImmutable|string $date
+     *
+     * @return $this
+     *
+     * @throws \Exception
+     */
+    public function startDate($date): Client
+    {
+        $this->startDate = $date instanceof DateTimeImmutable ? $date : new CarbonImmutable($date);
+
+        return $this;
+    }
+
+    /**
+     * @param \DateTimeImmutable|string $date
+     *
+     * @return $this
+     *
+     * @throws \Exception
+     */
+    public function endDate($date): Client
+    {
+        $this->endDate = $date instanceof DateTimeImmutable ? $date : new CarbonImmutable($date);
+
+        return $this;
+    }
+
+    /**
      * @return Quotes
      *
      * @throws \Exception
@@ -129,6 +167,23 @@ class CurrencylayerClient implements Client
         }
 
         return new Conversion($this->request('convert', $query));
+    }
+
+    /**
+     * @return Timeframe
+     *
+     * @throws \Exception
+     */
+    public function timeframe(): Timeframe
+    {
+        $data = $this->request('timeframe', [
+            'source' => $this->source,
+            'currencies' => $this->currencies,
+            'start_date' => $this->startDate->format('Y-m-d'),
+            'end_date' => $this->endDate->format('Y-m-d'),
+        ]);
+
+        return new Timeframe($data);
     }
 
     /**

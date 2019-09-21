@@ -4,6 +4,7 @@ namespace Orkhanahmadov\Currencylayer;
 
 use Orkhanahmadov\Currencylayer\Data\Conversion;
 use Orkhanahmadov\Currencylayer\Data\Quotes;
+use Orkhanahmadov\Currencylayer\Data\Timeframe;
 
 interface Client
 {
@@ -29,6 +30,20 @@ interface Client
     public function date($date): self;
 
     /**
+     * @param \DateTimeImmutable|string $date
+     *
+     * @return $this
+     */
+    public function startDate($date): self;
+
+    /**
+     * @param \DateTimeImmutable|string $date
+     *
+     * @return $this
+     */
+    public function endDate($date): self;
+
+    /**
      * @return Quotes
      */
     public function quotes(): Quotes;
@@ -39,4 +54,9 @@ interface Client
      * @return Conversion
      */
     public function convert($amount): Conversion;
+
+    /**
+     * @return Timeframe
+     */
+    public function timeframe(): Timeframe;
 }

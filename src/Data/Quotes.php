@@ -8,13 +8,13 @@ use DateTimeImmutable;
 class Quotes
 {
     /**
-     * @var array
-     */
-    private $quotes;
-    /**
      * @var string
      */
     private $source;
+    /**
+     * @var array
+     */
+    private $quotes;
     /**
      * @var int
      */
@@ -33,8 +33,8 @@ class Quotes
      */
     public function __construct(array $data)
     {
-        $this->quotes = $data['quotes'];
         $this->source = $data['source'];
+        $this->quotes = $data['quotes'];
         $this->timestamp = $data['timestamp'];
         $this->date = isset($data['date']) ? new CarbonImmutable($data['date']) : null;
     }
@@ -42,13 +42,13 @@ class Quotes
     /**
      * @param string $name
      *
-     * @return mixed
+     * @return float
      */
-    public function __get(string $name)
+    public function __get(string $name): float
     {
         $key = $this->source . $name;
         if (! array_key_exists($key, $this->quotes)) {
-            throw new \InvalidArgumentException($name . ' does not exist in API response. Did you requested it?');
+            throw new \InvalidArgumentException("{$name} does not exist in API response. Did you put it in request?");
         }
 
         return $this->quotes[$key];
