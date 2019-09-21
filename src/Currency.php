@@ -27,17 +27,14 @@ class Currency
     /**
      * Currency constructor.
      *
-     * @param array $quotes
-     * @param string $source
-     * @param int $timestamp
-     * @param string|null $date
+     * @param array $data
      */
-    public function __construct(array $quotes, string $source, int $timestamp, ?string $date = null)
+    public function __construct(array $data)
     {
-        $this->quotes = $quotes;
-        $this->source = $source;
-        $this->timestamp = $timestamp;
-        $this->date = $date;
+        $this->quotes = $data['quotes'];
+        $this->source = $data['source'];
+        $this->timestamp = $data['timestamp'];
+        $this->date = isset($data['date']) ? $data['date'] : null;
     }
 
     /**

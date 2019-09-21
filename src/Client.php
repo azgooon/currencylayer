@@ -35,5 +35,10 @@ interface Client
      */
     public function historical(): Currency;
 
-//    public function convert(float $amount, string $fromCurrency, string $toCurrency);
+    /**
+     * @param int|float $amount
+     *
+     * @return Conversion
+     */
+    public function convert($amount): Conversion;
 }

@@ -96,7 +96,7 @@ class CurrencylayerClient implements Client
             'source' => $this->source,
         ]);
 
-        return new Currency($data['quotes'], $data['source'], $data['timestamp']);
+        return new Currency($data);
     }
 
     /**
@@ -110,7 +110,24 @@ class CurrencylayerClient implements Client
             'source' => $this->source,
         ]);
 
-        return new Currency($data['quotes'], $data['source'], $data['timestamp'], $data['date']);
+        return new Currency($data);
+    }
+
+    /**
+     * @param int|float $amount
+     *
+     * @return Conversion
+     */
+    public function convert($amount): Conversion
+    {
+        $data = $this->request('convert', [
+            'date' => $this->date ? $this->date->format('Y-m-d') : null,
+            'from' => $this->source,
+            'to' => $this->currencies,
+            'amount' => $amount,
+        ]);
+
+        return new Conversion($data);
     }
 
     /**
