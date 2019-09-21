@@ -188,9 +188,9 @@ class CurrencylayerClient implements Client
     }
 
     /**
-     * @return Change
-     *
      * @throws \Exception
+     *
+     * @return Change
      */
     public function change(): Change
     {
