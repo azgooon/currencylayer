@@ -31,6 +31,10 @@ class Conversion
      * @var float
      */
     private $result;
+    /**
+     * @var CarbonImmutable|null
+     */
+    private $date;
 
     /**
      * Conversion constructor.
@@ -46,6 +50,7 @@ class Conversion
         $this->quote = $data['info']['quote'];
         $this->result = $data['result'];
         $this->timestamp = new CarbonImmutable($data['info']['timestamp']);
+        $this->date = isset($data['date']) ? new CarbonImmutable($data['date']) : null;
     }
 
     /**
@@ -94,5 +99,13 @@ class Conversion
     public function getResult(): float
     {
         return $this->result;
+    }
+
+    /**
+     * @return CarbonImmutable|null
+     */
+    public function getDate(): ?CarbonImmutable
+    {
+        return $this->date;
     }
 }

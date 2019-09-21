@@ -88,6 +88,8 @@ class CurrencylayerClient implements Client
 
     /**
      * @return Currency
+     *
+     * @throws \Exception
      */
     public function live(): Currency
     {
@@ -101,6 +103,8 @@ class CurrencylayerClient implements Client
 
     /**
      * @return Currency
+     *
+     * @throws \Exception
      */
     public function historical(): Currency
     {
@@ -122,14 +126,15 @@ class CurrencylayerClient implements Client
      */
     public function convert($amount): Conversion
     {
-        $data = $this->request('convert', [
+
+        $response = $this->request('convert', [
             'date' => $this->date ? $this->date->format('Y-m-d') : null,
             'from' => $this->source,
             'to' => $this->currencies,
             'amount' => $amount,
         ]);
 
-        return new Conversion($data);
+        return new Conversion($response);
     }
 
     /**

@@ -66,16 +66,17 @@ class ConvertTest extends TestCase
             ])
             ->willRespond(new Response(200, [], $this->jsonFixture('convert/historical')));
 
-        $data = $this->client->source('USD')->currencies('GBP')->date('2005-02-01')->convert(10);
+        $data = $this->client->source('USD')->currencies('GBP')->date('2005-01-01')->convert(10);
 
         $this->assertInstanceOf(Conversion::class, $data);
         $this->assertSame('USD', $data->getFrom());
         $this->assertSame('GBP', $data->getTo());
         $this->assertSame(10, $data->getAmount());
         $this->assertInstanceOf(CarbonImmutable::class, $data->getTimestamp());
-        $this->assertSame(1430068515, $data->getTimestamp()->unix());
-        $this->assertSame(0.658443, $data->getQuote());
-        $this->assertSame(6.58443, $data->getResult());
-        $this->assertSame(6.58443, $data->getResult());
+        $this->assertSame(1104623999, $data->getTimestamp()->unix());
+        $this->assertSame(0.51961, $data->getQuote());
+        $this->assertSame(5.1961, $data->getResult());
+        $this->assertInstanceOf(CarbonImmutable::class, $data->getDate());
+        $this->assertSame('2005-01-01', $data->getDate()->format('Y-m-d'));
     }
 }
