@@ -3,7 +3,6 @@
 namespace Orkhanahmadov\Currencylayer\Data;
 
 use Carbon\CarbonImmutable;
-use Orkhanahmadov\Currencylayer\CurrencylayerClient;
 
 class Timeframe
 {

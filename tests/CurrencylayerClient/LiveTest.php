@@ -83,7 +83,7 @@ class LiveTest extends TestCase
             ->willRespond(new Response(200, [], $this->jsonFixture('live/single')));
 
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('ABC does not exist in API response. Did you requested it?');
+        $this->expectExceptionMessage('ABC does not exist in API response. Did you put it in request?');
 
         $data = $this->client->source('USD')->currencies('EUR')->quotes();
         $data->ABC;
