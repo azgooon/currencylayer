@@ -117,6 +117,8 @@ class CurrencylayerClient implements Client
      * @param int|float $amount
      *
      * @return Conversion
+     *
+     * @throws \Exception
      */
     public function convert($amount): Conversion
     {

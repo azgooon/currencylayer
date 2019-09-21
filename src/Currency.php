@@ -20,7 +20,7 @@ class Currency
      */
     private $timestamp;
     /**
-     * @var string|null
+     * @var CarbonImmutable|null
      */
     private $date;
 
@@ -28,13 +28,15 @@ class Currency
      * Currency constructor.
      *
      * @param array $data
+     *
+     * @throws \Exception
      */
     public function __construct(array $data)
     {
         $this->quotes = $data['quotes'];
         $this->source = $data['source'];
         $this->timestamp = $data['timestamp'];
-        $this->date = isset($data['date']) ? $data['date'] : null;
+        $this->date = isset($data['date']) ? new CarbonImmutable($data['date']) : null;
     }
 
     /**
@@ -75,5 +77,13 @@ class Currency
     public function getTimestamp(): DateTimeImmutable
     {
         return new CarbonImmutable($this->timestamp);
+    }
+
+    /**
+     * @return CarbonImmutable|null
+     */
+    public function getDate(): ?CarbonImmutable
+    {
+        return $this->date;
     }
 }

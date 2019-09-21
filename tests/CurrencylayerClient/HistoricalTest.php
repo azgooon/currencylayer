@@ -47,5 +47,7 @@ class HistoricalTest extends TestCase
         $this->assertInstanceOf(CarbonImmutable::class, $data->getTimestamp());
         $this->assertSame(1107302399, $data->getTimestamp()->unix());
         $this->assertSame(3.67266, $data->AED);
+        $this->assertInstanceOf(CarbonImmutable::class, $data->getDate());
+        $this->assertSame('2005-02-01', $data->getDate()->format('Y-m-d'));
     }
 }
