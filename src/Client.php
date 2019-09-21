@@ -12,22 +12,28 @@ interface Client
     public function source(string $sourceCurrency): self;
 
     /**
-     * @param array<string> $currencies
+     * @param array<string>|string $currencies
      *
      * @return $this
      */
     public function currencies($currencies): self;
 
     /**
+     * @param \DateTimeImmutable|string $date
+     *
+     * @return $this
+     */
+    public function date($date): self;
+
+    /**
      * @return Currency
      */
     public function live(): Currency;
 
-//    public function date($currencies): self;
-//
-//    public function historical(): array;
-//
+    /**
+     * @return Currency
+     */
+    public function historical(): Currency;
+
 //    public function convert(float $amount, string $fromCurrency, string $toCurrency);
-//
-//    public function currencies(): array;
 }

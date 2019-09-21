@@ -2,6 +2,8 @@
 
 namespace Orkhanahmadov\Currencylayer;
 
+use Carbon\CarbonImmutable;
+use DateTimeImmutable;
 use GuzzleHttp\Client as Guzzle;
 
 class CurrencylayerClient implements Client
@@ -22,6 +24,10 @@ class CurrencylayerClient implements Client
      * @var string
      */
     private $currencies;
+    /**
+     * @var DateTimeImmutable
+     */
+    private $date;
 
     /**
      * CurrencylayerClient constructor.
@@ -67,6 +73,20 @@ class CurrencylayerClient implements Client
     }
 
     /**
+     * @param DateTimeImmutable|string $date
+     *
+     * @return $this
+     *
+     * @throws \Exception
+     */
+    public function date($date): Client
+    {
+        $this->date = $date instanceof DateTimeImmutable ? $date : new CarbonImmutable($date);
+
+        return $this;
+    }
+
+    /**
      * @return Currency
      */
     public function live(): Currency
@@ -77,6 +97,20 @@ class CurrencylayerClient implements Client
         ]);
 
         return new Currency($data['quotes'], $data['source'], $data['timestamp']);
+    }
+
+    /**
+     * @return Currency
+     */
+    public function historical(): Currency
+    {
+        $data = $this->request('historical', [
+            'date' => $this->date->format('Y-m-d'),
+            'currencies' => $this->currencies,
+            'source' => $this->source,
+        ]);
+
+        return new Currency($data['quotes'], $data['source'], $data['timestamp'], $data['date']);
     }
 
     /**

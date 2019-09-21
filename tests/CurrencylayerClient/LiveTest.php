@@ -44,6 +44,7 @@ class LiveTest extends TestCase
         $this->assertSame('USD', $data->getSource());
         $this->assertCount(1, $data->getQuotes());
         $this->assertInstanceOf(CarbonImmutable::class, $data->getTimestamp());
+        $this->assertSame(1432400348, $data->getTimestamp()->unix());
         $this->assertSame(1.278342, $data->EUR);
     }
 
@@ -65,7 +66,6 @@ class LiveTest extends TestCase
         $this->assertSame('USD', $data->getSource());
         $this->assertCount(2, $data->getQuotes());
         $this->assertInstanceOf(CarbonImmutable::class, $data->getTimestamp());
-        $this->assertSame(1432400348, $data->getTimestamp()->unix());
         $this->assertSame(1.278342, $data->EUR);
         $this->assertSame(1.269072, $data->AUD);
     }
@@ -87,25 +87,5 @@ class LiveTest extends TestCase
 
         $data = $this->client->source('USD')->currencies('EUR')->live();
         $data->ABC;
-    }
-
-    public function testThrowsExceptionIfRequestFails()
-    {
-        $this->guzzler
-            ->expects($this->once())
-            ->get(self::API_HTTP_URL . 'live')
-            ->withQuery([
-                'access_key' => self::FAKE_ACCESS_KEY,
-                'source' => 'USD',
-                'currencies' => 'EUR',
-            ])
-            ->willRespond(new Response(200, [], $this->jsonFixture('error')));
-
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage(
-            'You have not supplied a valid API Access Key. [Technical Support: support@apilayer.com]'
-        );
-
-        $this->client->source('USD')->currencies('EUR')->live();
     }
 }
