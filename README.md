@@ -23,12 +23,34 @@ You can install the package via composer:
 composer require orkhanahmadov/currencylayer
 ```
 
-
-
 ## Usage
+
+Instantiate `Orkhanahmadov\Currencylayer\CurrencylayerClient` class and pass your "access key"
+
+```php
+use Orkhanahmadov\Currencylayer\CurrencylayerClient;
+
+$client = new CurrencylayerClient('your-access-key-here');
+```
 
 You can find your access key in [Currencylayer Dashboard](https://currencylayer.com/dashboard).
 
+If you are using [paid plan](https://currencylayer.com/product), you can use HTTPS connection to currencylayer.com API.
+While instantiating pass `true` as second parameter to use HTTPS connection.
+
+```php
+$client = new CurrencylayerClient('your-access-key-here', true);
+```
+
+## Available methods
+
+### `quotes()`
+
+Use this method to fetch live and historical currency quotes.
+
+```php
+$client->
+```
 
 ### Testing
 
