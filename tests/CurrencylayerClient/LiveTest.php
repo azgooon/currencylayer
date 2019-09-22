@@ -67,23 +67,4 @@ class LiveTest extends TestCase
         $this->assertSame(1.278342, $data->EUR);
         $this->assertSame(1.269072, $data->AUD);
     }
-
-    public function testThrowsExceptionIfCurrencyRateIsNotAvailable()
-    {
-        $this->guzzler
-            ->expects($this->once())
-            ->get(self::API_HTTP_URL.'live')
-            ->withQuery([
-                'access_key' => self::FAKE_ACCESS_KEY,
-                'source'     => 'USD',
-                'currencies' => 'EUR',
-            ])
-            ->willRespond(new Response(200, [], $this->jsonFixture('live/single')));
-
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('ABC does not exist in API response. Did you put it in request?');
-
-        $data = $this->client->source('USD')->currencies('EUR')->quotes();
-        $data->ABC;
-    }
 }

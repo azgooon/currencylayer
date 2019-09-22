@@ -55,11 +55,11 @@ class ChangeTest extends TestCase
         $this->assertSame('2010-01-01', $data->getEndDate()->format('Y-m-d'));
         $this->assertSame(1.281236, $data->startRate('AUD'));
         $this->assertSame(1.108609, $data->endRate('AUD'));
-        $this->assertSame(-0.1726, $data->change('AUD'));
+        $this->assertSame(-0.1726, $data->changeAmount('AUD'));
         $this->assertSame(-13.4735, $data->changePercentage('AUD'));
         $this->assertSame(11.149362, $data->startRate('MXN'));
         $this->assertSame(13.108757, $data->endRate('MXN'));
-        $this->assertSame(1.9594, $data->change('MXN'));
+        $this->assertSame(1.9594, $data->changeAmount('MXN'));
         $this->assertSame(17.5741, $data->changePercentage('MXN'));
     }
 }

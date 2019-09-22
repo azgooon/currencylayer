@@ -39,18 +39,11 @@ class Quotes
     }
 
     /**
-     * @param string $name
-     *
-     * @return float
+     * @return string
      */
-    public function __get(string $name): float
+    public function getSource(): string
     {
-        $key = $this->source.$name;
-        if (!array_key_exists($key, $this->quotes)) {
-            throw new \InvalidArgumentException("{$name} does not exist in API response. Did you put it in request?");
-        }
-
-        return $this->quotes[$key];
+        return $this->source;
     }
 
     /**
@@ -59,14 +52,6 @@ class Quotes
     public function getQuotes(): array
     {
         return $this->quotes;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSource(): string
-    {
-        return $this->source;
     }
 
     /**
@@ -83,5 +68,20 @@ class Quotes
     public function getDate(): ?\DateTimeImmutable
     {
         return $this->date;
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return float
+     */
+    public function __get(string $name): float
+    {
+        $key = $this->source.$name;
+        if (!array_key_exists($key, $this->quotes)) {
+            throw new \InvalidArgumentException("{$name} does not exist in API response. Did you put it in request?");
+        }
+
+        return $this->quotes[$key];
     }
 }

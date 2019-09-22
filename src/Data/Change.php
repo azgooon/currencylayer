@@ -63,7 +63,7 @@ class Change
      *
      * @return float
      */
-    public function change(string $currency): float
+    public function changeAmount(string $currency): float
     {
         return $this->quotes[$this->findKey($currency)]['change'];
     }
@@ -88,7 +88,7 @@ class Change
         $key = $this->source.$currency;
         if (!isset($this->quotes[$key])) {
             throw new \InvalidArgumentException(
-                "{$currency} currencies is not available. Did you put it in request?"
+                "{$currency} currency is not available. Did you put it in request?"
             );
         }
 
