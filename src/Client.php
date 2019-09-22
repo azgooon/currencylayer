@@ -17,11 +17,11 @@ interface Client
     public function source(string $sourceCurrency): self;
 
     /**
-     * @param array<string>|string $currencies
+     * @param array<string>|string $currency
      *
      * @return $this
      */
-    public function currencies($currencies): self;
+    public function currency($currency): self;
 
     /**
      * @param \DateTimeImmutable|string $date

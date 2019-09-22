@@ -68,16 +68,16 @@ class CurrencylayerClient implements Client
     }
 
     /**
-     * @param array<string>|string $currencies
+     * @param array<string>|string $currency
      *
      * @return $this
      */
-    public function currencies($currencies): Client
+    public function currency($currency): Client
     {
-        if (is_array($currencies)) {
-            $this->currencies = implode(',', $currencies);
+        if (is_array($currency)) {
+            $this->currencies = implode(',', $currency);
         } else {
-            $this->currencies = $currencies;
+            $this->currencies = $currency;
         }
 
         return $this;

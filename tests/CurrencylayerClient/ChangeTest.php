@@ -32,7 +32,7 @@ class ChangeTest extends TestCase
             ->willRespond(new Response(200, [], $this->jsonFixture('change')));
 
         $data = $this->client->source('USD')
-            ->currencies('AUD,EUR,MXN')
+            ->currency('AUD,EUR,MXN')
             ->startDate('2005-01-01')
             ->endDate('2010-01-01')
             ->change();

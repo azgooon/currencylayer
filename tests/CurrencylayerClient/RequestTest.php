@@ -26,7 +26,7 @@ class RequestTest extends TestCase
             ])
             ->willRespond(new Response(200, [], $this->jsonFixture('live/single')));
 
-        $client->source('USD')->currencies('EUR')->quotes();
+        $client->source('USD')->currency('EUR')->quotes();
     }
 
     public function testThrowsExceptionIfAPIRequestsNonSuccessfulResponse()
@@ -49,6 +49,6 @@ class RequestTest extends TestCase
             'You have not supplied a valid API Access Key. [Technical Support: support@apilayer.com]'
         );
 
-        $client->source('USD')->currencies('EUR')->quotes();
+        $client->source('USD')->currency('EUR')->quotes();
     }
 }

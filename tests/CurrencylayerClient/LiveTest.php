@@ -29,7 +29,7 @@ class LiveTest extends TestCase
             ])
             ->willRespond(new Response(200, [], $this->jsonFixture('live/single')));
 
-        $data = $this->client->source('USD')->currencies('EUR')->quotes();
+        $data = $this->client->source('USD')->currency('EUR')->quotes();
 
         $this->assertInstanceOf(Quotes::class, $data);
         $this->assertSame('USD', $data->getSource());
@@ -50,7 +50,7 @@ class LiveTest extends TestCase
             ])
             ->willRespond(new Response(200, [], $this->jsonFixture('live/multiple')));
 
-        $data = $this->client->source('USD')->currencies(['EUR', 'AUD'])->quotes();
+        $data = $this->client->source('USD')->currency(['EUR', 'AUD'])->quotes();
 
         $this->assertInstanceOf(Quotes::class, $data);
         $this->assertSame('USD', $data->getSource());

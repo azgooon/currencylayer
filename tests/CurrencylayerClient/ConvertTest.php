@@ -30,7 +30,7 @@ class ConvertTest extends TestCase
             ])
             ->willRespond(new Response(200, [], $this->jsonFixture('convert/live')));
 
-        $data = $this->client->source('USD')->currencies('GBP')->convert(10);
+        $data = $this->client->source('USD')->currency('GBP')->convert(10);
 
         $this->assertInstanceOf(Conversion::class, $data);
         $this->assertSame('USD', $data->getFromCurrency());
@@ -55,7 +55,7 @@ class ConvertTest extends TestCase
             ])
             ->willRespond(new Response(200, [], $this->jsonFixture('convert/historical')));
 
-        $data = $this->client->source('USD')->currencies('GBP')->date('2005-01-01')->convert(10);
+        $data = $this->client->source('USD')->currency('GBP')->date('2005-01-01')->convert(10);
 
         $this->assertInstanceOf(Conversion::class, $data);
         $this->assertSame('USD', $data->getFromCurrency());

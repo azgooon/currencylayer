@@ -32,7 +32,7 @@ class TimeframeTest extends TestCase
             ->willRespond(new Response(200, [], $this->jsonFixture('timeframe')));
 
         $data = $this->client->source('USD')
-            ->currencies(['GBP', 'EUR'])
+            ->currency(['GBP', 'EUR'])
             ->startDate('2010-03-01')
             ->endDate('2010-03-02')
             ->timeframe();
