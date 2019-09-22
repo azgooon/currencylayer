@@ -38,6 +38,11 @@ class QuotesTest extends TestCase
         $this->assertSame('2005-02-01', $class->getDate()->format('Y-m-d'));
     }
 
+    public function testGetDateWithNull()
+    {
+        $this->assertNull($this->class->getDate());
+    }
+
     public function testGetsCurrencyRate()
     {
         $class = new Quotes(json_decode($this->jsonFixture('live/multiple'), true));
