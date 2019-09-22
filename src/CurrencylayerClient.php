@@ -155,6 +155,10 @@ class CurrencylayerClient implements Client
      */
     public function convert($amount): Conversion
     {
+        if (!$this->source || !$this->currencies) {
+            throw new \InvalidArgumentException('Conversion "from" and "to" currencies were not set.');
+        }
+
         $query = [
             'from'   => $this->source,
             'to'     => $this->currencies,
@@ -175,6 +179,10 @@ class CurrencylayerClient implements Client
      */
     public function timeframe(): Timeframe
     {
+        if (!$this->startDate || !$this->endDate) {
+            throw new \InvalidArgumentException('Start and/or end dates were not set');
+        }
+
         $data = $this->request('timeframe', [
             'source'     => $this->source,
             'currencies' => $this->currencies,
@@ -192,6 +200,10 @@ class CurrencylayerClient implements Client
      */
     public function change(): Change
     {
+        if (!$this->startDate || !$this->endDate) {
+            throw new \InvalidArgumentException('Start and/or end dates were not set');
+        }
+
         $data = $this->request('change', [
             'source'     => $this->source,
             'currencies' => $this->currencies,

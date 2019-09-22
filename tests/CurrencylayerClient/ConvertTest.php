@@ -67,6 +67,14 @@ class ConvertTest extends TestCase
         $this->assertSame('2005-01-01', $data->getDate()->format('Y-m-d'));
     }
 
+    public function testThrowsExceptionIfFromOrToCurrenciesNotAvailable()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Conversion "from" and "to" currencies were not set.');
+
+        $this->client->convert(123);
+    }
+
     protected function setUp(): void
     {
         parent::setUp();

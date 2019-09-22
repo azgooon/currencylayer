@@ -17,7 +17,7 @@ class ChangeTest extends TestCase
      */
     private $client;
 
-    public function testWithSingleCurrency()
+    public function test()
     {
         $this->guzzler
             ->expects($this->once())
@@ -50,6 +50,14 @@ class ChangeTest extends TestCase
         $this->assertSame(13.108757, $data->endRate('MXN'));
         $this->assertSame(1.9594, $data->changeAmount('MXN'));
         $this->assertSame(17.5741, $data->changePercentage('MXN'));
+    }
+
+    public function testThrowsExceptionIfStartOrEndDateWasNotSet()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Start and/or end dates were not set');
+
+        $this->client->startDate('2010-03-01')->change();
     }
 
     protected function setUp(): void

@@ -47,6 +47,14 @@ class TimeframeTest extends TestCase
         $this->assertSame('2010-03-02', $data->getEndDate()->format('Y-m-d'));
     }
 
+    public function testThrowsExceptionIfStartOrEndDateWasNotSet()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Start and/or end dates were not set');
+
+        $this->client->startDate('2010-03-01')->timeframe();
+    }
+
     protected function setUp(): void
     {
         parent::setUp();
