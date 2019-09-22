@@ -3,7 +3,6 @@
 namespace Orkhanahmadov\Currencylayer\Tests\CurrencylayerClient;
 
 use BlastCloud\Guzzler\UsesGuzzler;
-use Carbon\CarbonImmutable;
 use GuzzleHttp\Psr7\Response;
 use Orkhanahmadov\Currencylayer\CurrencylayerClient;
 use Orkhanahmadov\Currencylayer\Data\Quotes;
@@ -17,14 +16,6 @@ class HistoricalTest extends TestCase
      * @var CurrencylayerClient
      */
     private $client;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->client = new CurrencylayerClient(self::FAKE_ACCESS_KEY);
-        $this->client->setClient($this->guzzler->getClient(['base_uri' => self::API_HTTP_URL]));
-    }
 
     public function testWithSingleCurrency()
     {
@@ -45,7 +36,6 @@ class HistoricalTest extends TestCase
         $this->assertSame('USD', $data->getSource());
         $this->assertCount(1, $data->getQuotes());
         $this->assertSame(1107302399, $data->getTimestamp());
-        $this->assertInstanceOf(CarbonImmutable::class, $data->getDate());
         $this->assertSame('2005-02-01', $data->getDate()->format('Y-m-d'));
         $this->assertSame(3.67266, $data->AED);
     }
@@ -69,9 +59,16 @@ class HistoricalTest extends TestCase
         $this->assertSame('USD', $data->getSource());
         $this->assertCount(2, $data->getQuotes());
         $this->assertSame(1107302399, $data->getTimestamp());
-        $this->assertInstanceOf(CarbonImmutable::class, $data->getDate());
         $this->assertSame('2005-02-01', $data->getDate()->format('Y-m-d'));
         $this->assertSame(3.67266, $data->AED);
         $this->assertSame(96.848753, $data->ALL);
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->client = new CurrencylayerClient(self::FAKE_ACCESS_KEY);
+        $this->client->setClient($this->guzzler->getClient(['base_uri' => self::API_HTTP_URL]));
     }
 }

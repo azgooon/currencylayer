@@ -39,6 +39,38 @@ class Change
     }
 
     /**
+     * @return string
+     */
+    public function getSource(): string
+    {
+        return $this->source;
+    }
+
+    /**
+     * @return array
+     */
+    public function getQuotes(): array
+    {
+        return $this->quotes;
+    }
+
+    /**
+     * @return \DateTimeImmutable
+     */
+    public function getStartDate(): \DateTimeImmutable
+    {
+        return $this->startDate;
+    }
+
+    /**
+     * @return \DateTimeImmutable
+     */
+    public function getEndDate(): \DateTimeImmutable
+    {
+        return $this->endDate;
+    }
+
+    /**
      * @param string $currency
      *
      * @return float
@@ -93,37 +125,5 @@ class Change
         }
 
         return $key;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSource(): string
-    {
-        return $this->source;
-    }
-
-    /**
-     * @return array
-     */
-    public function getQuotes(): array
-    {
-        return $this->quotes;
-    }
-
-    /**
-     * @return \DateTimeImmutable
-     */
-    public function getStartDate(): \DateTimeImmutable
-    {
-        return $this->startDate;
-    }
-
-    /**
-     * @return \DateTimeImmutable
-     */
-    public function getEndDate(): \DateTimeImmutable
-    {
-        return $this->endDate;
     }
 }

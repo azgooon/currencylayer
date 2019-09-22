@@ -3,7 +3,6 @@
 namespace Orkhanahmadov\Currencylayer\Tests\CurrencylayerClient;
 
 use BlastCloud\Guzzler\UsesGuzzler;
-use Carbon\CarbonImmutable;
 use GuzzleHttp\Psr7\Response;
 use Orkhanahmadov\Currencylayer\CurrencylayerClient;
 use Orkhanahmadov\Currencylayer\Data\Change;
@@ -17,14 +16,6 @@ class ChangeTest extends TestCase
      * @var CurrencylayerClient
      */
     private $client;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->client = new CurrencylayerClient(self::FAKE_ACCESS_KEY);
-        $this->client->setClient($this->guzzler->getClient(['base_uri' => self::API_HTTP_URL]));
-    }
 
     public function testWithSingleCurrency()
     {
@@ -49,9 +40,7 @@ class ChangeTest extends TestCase
         $this->assertInstanceOf(Change::class, $data);
         $this->assertSame('USD', $data->getSource());
         $this->assertCount(3, $data->getQuotes());
-        $this->assertInstanceOf(CarbonImmutable::class, $data->getStartDate());
         $this->assertSame('2005-01-01', $data->getStartDate()->format('Y-m-d'));
-        $this->assertInstanceOf(CarbonImmutable::class, $data->getEndDate());
         $this->assertSame('2010-01-01', $data->getEndDate()->format('Y-m-d'));
         $this->assertSame(1.281236, $data->startRate('AUD'));
         $this->assertSame(1.108609, $data->endRate('AUD'));
@@ -61,5 +50,13 @@ class ChangeTest extends TestCase
         $this->assertSame(13.108757, $data->endRate('MXN'));
         $this->assertSame(1.9594, $data->changeAmount('MXN'));
         $this->assertSame(17.5741, $data->changePercentage('MXN'));
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->client = new CurrencylayerClient(self::FAKE_ACCESS_KEY);
+        $this->client->setClient($this->guzzler->getClient(['base_uri' => self::API_HTTP_URL]));
     }
 }

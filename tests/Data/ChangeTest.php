@@ -12,26 +12,6 @@ class ChangeTest extends TestCase
      */
     private $class;
 
-    public function testStartRate()
-    {
-        $this->assertSame(0.73618, $this->class->startRate('EUR'));
-    }
-
-    public function testEndRate()
-    {
-        $this->assertSame(1.108609, $this->class->endRate('AUD'));
-    }
-
-    public function testChangeAmount()
-    {
-        $this->assertSame(1.9594, $this->class->changeAmount('MXN'));
-    }
-
-    public function testChangePercentage()
-    {
-        $this->assertSame(-5.2877, $this->class->changePercentage('EUR'));
-    }
-
     public function testGetSource()
     {
         $this->assertSame('USD', $this->class->getSource());
@@ -53,6 +33,26 @@ class ChangeTest extends TestCase
     {
         $this->assertInstanceOf(\DateTimeImmutable::class, $this->class->getEndDate());
         $this->assertSame('2010-01-01', $this->class->getEndDate()->format('Y-m-d'));
+    }
+
+    public function testStartRate()
+    {
+        $this->assertSame(0.73618, $this->class->startRate('EUR'));
+    }
+
+    public function testEndRate()
+    {
+        $this->assertSame(1.108609, $this->class->endRate('AUD'));
+    }
+
+    public function testChangeAmount()
+    {
+        $this->assertSame(1.9594, $this->class->changeAmount('MXN'));
+    }
+
+    public function testChangePercentage()
+    {
+        $this->assertSame(-5.2877, $this->class->changePercentage('EUR'));
     }
 
     public function testThrowsExceptionIfCurrencyKeyIsNotAvailable()

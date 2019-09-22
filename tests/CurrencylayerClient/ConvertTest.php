@@ -3,7 +3,6 @@
 namespace Orkhanahmadov\Currencylayer\Tests\CurrencylayerClient;
 
 use BlastCloud\Guzzler\UsesGuzzler;
-use Carbon\CarbonImmutable;
 use GuzzleHttp\Psr7\Response;
 use Orkhanahmadov\Currencylayer\CurrencylayerClient;
 use Orkhanahmadov\Currencylayer\Data\Conversion;
@@ -17,14 +16,6 @@ class ConvertTest extends TestCase
      * @var CurrencylayerClient
      */
     private $client;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->client = new CurrencylayerClient(self::FAKE_ACCESS_KEY);
-        $this->client->setClient($this->guzzler->getClient(['base_uri' => self::API_HTTP_URL]));
-    }
 
     public function testConvertWithLiveQuotes()
     {
@@ -73,7 +64,14 @@ class ConvertTest extends TestCase
         $this->assertSame(1104623999, $data->getTimestamp());
         $this->assertSame(0.51961, $data->getQuote());
         $this->assertSame(5.1961, $data->getResult());
-        $this->assertInstanceOf(CarbonImmutable::class, $data->getDate());
         $this->assertSame('2005-01-01', $data->getDate()->format('Y-m-d'));
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->client = new CurrencylayerClient(self::FAKE_ACCESS_KEY);
+        $this->client->setClient($this->guzzler->getClient(['base_uri' => self::API_HTTP_URL]));
     }
 }
