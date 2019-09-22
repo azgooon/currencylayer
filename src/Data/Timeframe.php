@@ -77,7 +77,7 @@ class Timeframe
      *
      * @return array
      */
-    public function for($date): array
+    public function quotes($date): array
     {
         $date = $date instanceof \DateTimeImmutable ?
             $date->format('Y-m-d') :
@@ -100,16 +100,10 @@ class Timeframe
      */
     public function __call(string $name, $arguments): float
     {
-        if (!isset($arguments[0])) {
-            throw new \InvalidArgumentException(
-                "{$name} method doesn't exist."
-            );
-        }
-
         $key = $this->source.$name;
-        if (!isset($this->quotes[$arguments[0]]) || !isset($this->quotes[$arguments[0]][$key])) {
+        if (!isset($arguments[0]) || !isset($this->quotes[$arguments[0]]) || !isset($this->quotes[$arguments[0]][$key])) {
             throw new \InvalidArgumentException(
-                "{$this->source} -> {$name} quotes for {$arguments[0]} is not available. Did you put it in request?"
+                "{$name} currency or its argument is invalid. You sure you calling correct currency with correct date?"
             );
         }
 

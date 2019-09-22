@@ -42,7 +42,7 @@ class TimeframeTest extends TestCase
         $this->assertCount(2, $data->getQuotes());
         $this->assertSame(0.668525, $data->GBP('2010-03-01'));
         $this->assertSame(0.736145, $data->EUR('2010-03-02'));
-        $this->assertCount(2, $data->for('2010-03-01'));
+        $this->assertCount(2, $data->quotes('2010-03-01'));
         $this->assertSame('2010-03-01', $data->getStartDate()->format('Y-m-d'));
         $this->assertSame('2010-03-02', $data->getEndDate()->format('Y-m-d'));
     }
