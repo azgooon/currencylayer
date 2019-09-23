@@ -153,9 +153,29 @@ $timeframe->EUR('2010-03-20'); // returns USD to EUR rate for 2010-03-20
 
 ### `change()`
 
+Use this method to show currency rate change between given dates.
 
+Pass source currency to `source()` method, rate currencies to `currency()` method and 
+start date as first argument and end date as second argument to `change()` method.
+Start and end dates can be string of dates or instances of `DateTimeInterface`.
 
+Following example will return rate change from USD to GBP and EUR between `2010-03-01` and `2010-04-01`.
 
+```php
+$client->source('USD')->currency('GBP', 'EUR')->change('2010-03-01', '2010-04-01');
+```
+
+`change()` method returns instance of `Orkhanahmadov\Currencylayer\Data\Change`.
+This class has following methods that you can use:
+
+* `getSource()` - Returns source currency (for example, `USD`)
+* `getStartDate()` - Returns `DateTimeInterface` start date
+* `getEndDate()` - Returns `DateTimeInterface` start date
+* `getQuotes()` - Returns array of currency change rates between start and end date
+* `startRate()` - Accepts currency code as an argument and returns currency rate for given start date
+* `endRate()` - Accepts currency code as an argument and returns currency rate for given end date
+* `changeAmount()` - Accepts currency code as an argument and currency rate's change in amount
+* `changePercentage()` - Accepts currency code as an argument and currency rate's change in percentage
 
 ### Testing
 

@@ -53,7 +53,7 @@ class HistoricalTest extends TestCase
             ])
             ->willRespond(new Response(200, [], $this->jsonFixture('historical/multiple')));
 
-        $data = $this->client->source('USD')->currency(['AED', 'ALL'])->date('2005-02-01')->quotes();
+        $data = $this->client->source('USD')->currency('AED', 'ALL')->date('2005-02-01')->quotes();
 
         $this->assertInstanceOf(Quotes::class, $data);
         $this->assertSame('USD', $data->getSource());

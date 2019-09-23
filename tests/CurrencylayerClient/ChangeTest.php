@@ -31,7 +31,7 @@ class ChangeTest extends TestCase
             ])
             ->willRespond(new Response(200, [], $this->jsonFixture('change')));
 
-        $data = $this->client->source('USD')->currency('AUD,EUR,MXN')->change('2005-01-01', '2010-01-01');
+        $data = $this->client->source('USD')->currency('AUD', 'EUR', 'MXN')->change('2005-01-01', '2010-01-01');
 
         $this->assertInstanceOf(Change::class, $data);
         $this->assertSame('USD', $data->getSource());

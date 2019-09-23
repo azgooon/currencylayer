@@ -11,10 +11,6 @@ class Change
      */
     private $source;
     /**
-     * @var array
-     */
-    private $quotes;
-    /**
      * @var \DateTimeInterface
      */
     private $startDate;
@@ -22,6 +18,10 @@ class Change
      * @var \DateTimeInterface
      */
     private $endDate;
+    /**
+     * @var array
+     */
+    private $quotes;
 
     /**
      * Change constructor.
@@ -47,14 +47,6 @@ class Change
     }
 
     /**
-     * @return array
-     */
-    public function getQuotes(): array
-    {
-        return $this->quotes;
-    }
-
-    /**
      * @return \DateTimeInterface
      */
     public function getStartDate(): \DateTimeInterface
@@ -68,6 +60,14 @@ class Change
     public function getEndDate(): \DateTimeInterface
     {
         return $this->endDate;
+    }
+
+    /**
+     * @return array
+     */
+    public function getQuotes(): array
+    {
+        return $this->quotes;
     }
 
     /**
