@@ -13,6 +13,9 @@ php:
 env:
     global:
         - GIT_COMMITTED_AT=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then git log -1 --pretty=format:%ct; else git log -1 --skip 1 --pretty=format:%ct; fi)
+    matrix:
+        - COMPOSER_FLAGS="--prefer-lowest"
+        - COMPOSER_FLAGS=""
 
 matrix:
     fast_finish: true
@@ -27,7 +30,7 @@ before_install:
     - composer global require hirak/prestissimo --update-no-dev
 
 install:
-    - travis_retry composer install --no-interaction --prefer-dist --no-suggest
+    - travis_retry composer update ${COMPOSER_FLAGS} --no-interaction --prefer-dist --no-suggest
 
 script:
     - vendor/bin/phpunit --exclude-group integration --coverage-text --coverage-clover build/logs/clover.xml

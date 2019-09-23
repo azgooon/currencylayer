@@ -44,13 +44,86 @@ $client = new CurrencylayerClient('your-access-key-here', true);
 
 ## Available methods
 
+### `list()`
+// todo
+
 ### `quotes()`
 
-Use this method to fetch live and historical currency quotes.
+Use this method to fetch live and historical currency rates.
+
+Pass source currency to `source()` method and rate currency `currency()` method.
+Following example will fetch live rates from USD to EUR.
 
 ```php
-$client->
+$client->source('USD')->currency('EUR')->quotes();
 ```
+
+You can also pass multiple rate currencies to `currency()` method as an array:
+
+```php
+$client->source('USD')->currency(['EUR', 'AUD'])->quotes();
+```
+
+If you want fetch rates for specific date, you can pass the date to `date()` method.
+`date()` method accepts dates as string or instance of `\DateTimeImmutable`.
+
+```php
+$client->source('USD')->currency('EUR')->date('2019-05-20')->quotes();
+```
+
+`quotes()` method returns instance of `Orkhanahmadov\Currencylayer\Data\Quotes`.
+This class has following methods that you can use:
+
+* `getSource()` - Returns source currency (for example, `USD`)
+* `getTimestamp()` - Returns timestamp value from currencylayer API (for example, `1432400348`)
+* `getQuotes()` - Returns array of quotes from currencylayer API
+* `getDate()` - Returns `\DateTimeImmutable` date. If you fetched live rates this method will return `null`
+
+You can also get rates for each fetched currency using currency name as property:
+
+```php
+$quotes = $client->source('USD')->currency(['EUR', 'AUD'])->date('2019-05-20')->quotes();
+
+$qoutes->EUR; // returns USD to EUR rate for 2019-05-20
+$qoutes->AUD; // returns USD to AUD rate for 2019-05-20
+```
+
+### `convert()`
+
+Use this method to convert amount in one currency to another currency.
+
+Pass source currency to `source()` method, rate currency `currency()` method and amount to `convert()` method.
+Following example will convert 10 USD to GBP using live rates.
+
+```php
+$client->source('USD')->currency('GBP')->convert(10);
+```
+
+If you want conversion based on different date's rates, you can pass the date to `date()` method.
+`date()` method accepts dates as string or instance of `\DateTimeImmutable`.
+
+```php
+$client->source('USD')->currency('GBP')->date('2019-05-20')->convert(10);
+```
+
+`convert()` method returns instance of `Orkhanahmadov\Currencylayer\Data\Conversion`.
+This class has following methods that you can use:
+
+* `getFromCurrency()` - Returns source currency (for example, `USD`)
+* `getToCurrency()` - Returns target currency (for example, `GBP`)
+* `getTimestamp()` - Returns timestamp value from currencylayer API (for example, `1432400348`)
+* `getAmount()` - Returns amount that passed to `convert()` method (for example, `10`)
+* `getQuote()` - Returns quote between source and target currencies (for example, `0.658443`)
+* `getResult()` - Returns conversion result (for example `6.58443`)
+* `getDate()` - Returns `\DateTimeImmutable` date. If you fetched live rates this method will return `null`
+
+### `timeframe()`
+
+
+
+
+
+### `change()`
 
 ### Testing
 

@@ -9,6 +9,7 @@ use Orkhanahmadov\Currencylayer\Data\Conversion;
 use Orkhanahmadov\Currencylayer\Data\Quotes;
 use Orkhanahmadov\Currencylayer\Data\Timeframe;
 
+// todo: list method
 class CurrencylayerClient implements Client
 {
     /**
