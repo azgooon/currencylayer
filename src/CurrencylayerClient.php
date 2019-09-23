@@ -138,10 +138,10 @@ class CurrencylayerClient implements Client
     }
 
     /**
-     * @throws \Exception
-     *
      * @param \DateTimeInterface|string $startDate
      * @param \DateTimeInterface|string $endDate
+     *
+     * @throws \Exception
      *
      * @return Timeframe
      */
@@ -158,10 +158,10 @@ class CurrencylayerClient implements Client
     }
 
     /**
-     * @throws \Exception
-     *
      * @param \DateTimeInterface|string $startDate
      * @param \DateTimeInterface|string $endDate
+     *
+     * @throws \Exception
      *
      * @return Change
      */

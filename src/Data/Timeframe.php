@@ -3,7 +3,6 @@
 namespace Orkhanahmadov\Currencylayer\Data;
 
 use Carbon\CarbonImmutable;
-use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 
 class Timeframe
 {

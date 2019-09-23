@@ -60,6 +60,7 @@ interface Client
     /**
      * @param \DateTimeInterface|string $startDate
      * @param \DateTimeInterface|string $endDate
+     *
      * @return Change
      */
     public function change($startDate, $endDate): Change;
