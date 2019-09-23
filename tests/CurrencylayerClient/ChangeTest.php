@@ -31,11 +31,7 @@ class ChangeTest extends TestCase
             ])
             ->willRespond(new Response(200, [], $this->jsonFixture('change')));
 
-        $data = $this->client->source('USD')
-            ->currency('AUD,EUR,MXN')
-            ->startDate('2005-01-01')
-            ->endDate('2010-01-01')
-            ->change();
+        $data = $this->client->source('USD')->currency('AUD,EUR,MXN')->change('2005-01-01', '2010-01-01');
 
         $this->assertInstanceOf(Change::class, $data);
         $this->assertSame('USD', $data->getSource());
@@ -50,14 +46,6 @@ class ChangeTest extends TestCase
         $this->assertSame(13.108757, $data->endRate('MXN'));
         $this->assertSame(1.9594, $data->changeAmount('MXN'));
         $this->assertSame(17.5741, $data->changePercentage('MXN'));
-    }
-
-    public function testThrowsExceptionIfStartOrEndDateWasNotSet()
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Start and/or end dates were not set');
-
-        $this->client->startDate('2010-03-01')->change();
     }
 
     protected function setUp(): void

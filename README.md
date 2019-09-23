@@ -65,7 +65,7 @@ $client->source('USD')->currency(['EUR', 'AUD'])->quotes();
 ```
 
 If you want fetch rates for specific date, you can pass the date to `date()` method.
-`date()` method accepts dates as string or instance of `\DateTimeImmutable`.
+`date()` method accepts dates as string or instance of `DateTimeImmutable`.
 
 ```php
 $client->source('USD')->currency('EUR')->date('2019-05-20')->quotes();
@@ -77,7 +77,7 @@ This class has following methods that you can use:
 * `getSource()` - Returns source currency (for example, `USD`)
 * `getTimestamp()` - Returns timestamp value from currencylayer API (for example, `1432400348`)
 * `getQuotes()` - Returns array of quotes from currencylayer API
-* `getDate()` - Returns `\DateTimeImmutable` date. If you fetched live rates this method will return `null`
+* `getDate()` - Returns `DateTimeImmutable` date. If you fetched live rates this method will return `null`
 
 You can also get rates for each fetched currency using currency name as property:
 
@@ -100,7 +100,7 @@ $client->source('USD')->currency('GBP')->convert(10);
 ```
 
 If you want conversion based on different date's rates, you can pass the date to `date()` method.
-`date()` method accepts dates as string or instance of `\DateTimeImmutable`.
+`date()` method accepts dates as string or instance of `DateTimeImmutable`.
 
 ```php
 $client->source('USD')->currency('GBP')->date('2019-05-20')->convert(10);
@@ -115,7 +115,7 @@ This class has following methods that you can use:
 * `getAmount()` - Returns amount that passed to `convert()` method (for example, `10`)
 * `getQuote()` - Returns quote between source and target currencies (for example, `0.658443`)
 * `getResult()` - Returns conversion result (for example `6.58443`)
-* `getDate()` - Returns `\DateTimeImmutable` date. If you fetched live rates this method will return `null`
+* `getDate()` - Returns `DateTimeImmutable` date. If you fetched live rates this method will return `null`
 
 ### `timeframe()`
 
@@ -124,6 +124,10 @@ This class has following methods that you can use:
 
 
 ### `change()`
+
+
+
+
 
 ### Testing
 

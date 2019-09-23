@@ -9,6 +9,13 @@ use Orkhanahmadov\Currencylayer\Data\Timeframe;
 
 interface Client
 {
+//    /**
+//     * @param string $sourceCurrency
+//     *
+//     * @return $this
+//     */
+//    public function list(): self;
+
     /**
      * @param string $sourceCurrency
      *
@@ -31,20 +38,6 @@ interface Client
     public function date($date): self;
 
     /**
-     * @param \DateTimeImmutable|string $date
-     *
-     * @return $this
-     */
-    public function startDate($date): self;
-
-    /**
-     * @param \DateTimeImmutable|string $date
-     *
-     * @return $this
-     */
-    public function endDate($date): self;
-
-    /**
      * @return Quotes
      */
     public function quotes(): Quotes;
@@ -57,12 +50,17 @@ interface Client
     public function convert($amount): Conversion;
 
     /**
+     * @param \DateTimeImmutable|string $startDate
+     * @param \DateTimeImmutable|string $endDate
+     *
      * @return Timeframe
      */
-    public function timeframe(): Timeframe;
+    public function timeframe($startDate, $endDate): Timeframe;
 
     /**
+     * @param \DateTimeImmutable|string $startDate
+     * @param \DateTimeImmutable|string $endDate
      * @return Change
      */
-    public function change(): Change;
+    public function change($startDate, $endDate): Change;
 }

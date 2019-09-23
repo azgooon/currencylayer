@@ -31,11 +31,7 @@ class TimeframeTest extends TestCase
             ])
             ->willRespond(new Response(200, [], $this->jsonFixture('timeframe')));
 
-        $data = $this->client->source('USD')
-            ->currency(['GBP', 'EUR'])
-            ->startDate('2010-03-01')
-            ->endDate('2010-03-02')
-            ->timeframe();
+        $data = $this->client->source('USD')->currency(['GBP', 'EUR'])->timeframe('2010-03-01', '2010-03-02');
 
         $this->assertInstanceOf(Timeframe::class, $data);
         $this->assertSame('USD', $data->getSource());
@@ -45,14 +41,6 @@ class TimeframeTest extends TestCase
         $this->assertCount(2, $data->quotes('2010-03-01'));
         $this->assertSame('2010-03-01', $data->getStartDate()->format('Y-m-d'));
         $this->assertSame('2010-03-02', $data->getEndDate()->format('Y-m-d'));
-    }
-
-    public function testThrowsExceptionIfStartOrEndDateWasNotSet()
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Start and/or end dates were not set');
-
-        $this->client->startDate('2010-03-01')->timeframe();
     }
 
     protected function setUp(): void

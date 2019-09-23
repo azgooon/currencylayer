@@ -32,14 +32,6 @@ class CurrencylayerClient implements Client
      * @var \DateTimeImmutable|null
      */
     private $date = null;
-    /**
-     * @var \DateTimeImmutable|string|null
-     */
-    private $startDate = null;
-    /**
-     * @var \DateTimeImmutable|string|null
-     */
-    private $endDate = null;
 
     /**
      * CurrencylayerClient constructor.
@@ -99,34 +91,6 @@ class CurrencylayerClient implements Client
     }
 
     /**
-     * @param \DateTimeImmutable|string $date
-     *
-     * @throws \Exception
-     *
-     * @return $this
-     */
-    public function startDate($date): Client
-    {
-        $this->startDate = $date instanceof \DateTimeImmutable ? $date : new CarbonImmutable($date);
-
-        return $this;
-    }
-
-    /**
-     * @param \DateTimeImmutable|string $date
-     *
-     * @throws \Exception
-     *
-     * @return $this
-     */
-    public function endDate($date): Client
-    {
-        $this->endDate = $date instanceof \DateTimeImmutable ? $date : new CarbonImmutable($date);
-
-        return $this;
-    }
-
-    /**
      * @throws \Exception
      *
      * @return Quotes
@@ -176,19 +140,18 @@ class CurrencylayerClient implements Client
     /**
      * @throws \Exception
      *
+     * @param \DateTimeImmutable|string $startDate
+     * @param \DateTimeImmutable|string $endDate
+     *
      * @return Timeframe
      */
-    public function timeframe(): Timeframe
+    public function timeframe($startDate, $endDate): Timeframe
     {
-        if (!$this->startDate || !$this->endDate) {
-            throw new \InvalidArgumentException('Start and/or end dates were not set');
-        }
-
         $data = $this->request('timeframe', [
             'source'     => $this->source,
             'currencies' => $this->currencies,
-            'start_date' => $this->startDate->format('Y-m-d'),
-            'end_date'   => $this->endDate->format('Y-m-d'),
+            'start_date' => $startDate instanceof \DateTimeImmutable ? $startDate->format('Y-m-d') : $startDate,
+            'end_date'   => $endDate instanceof \DateTimeImmutable ? $endDate->format('Y-m-d') : $endDate,
         ]);
 
         return new Timeframe($data);
@@ -197,19 +160,18 @@ class CurrencylayerClient implements Client
     /**
      * @throws \Exception
      *
+     * @param \DateTimeImmutable|string $startDate
+     * @param \DateTimeImmutable|string $endDate
+     *
      * @return Change
      */
-    public function change(): Change
+    public function change($startDate, $endDate): Change
     {
-        if (!$this->startDate || !$this->endDate) {
-            throw new \InvalidArgumentException('Start and/or end dates were not set');
-        }
-
         $data = $this->request('change', [
             'source'     => $this->source,
             'currencies' => $this->currencies,
-            'start_date' => $this->startDate->format('Y-m-d'),
-            'end_date'   => $this->endDate->format('Y-m-d'),
+            'start_date' => $startDate instanceof \DateTimeImmutable ? $startDate->format('Y-m-d') : $startDate,
+            'end_date'   => $endDate instanceof \DateTimeImmutable ? $endDate->format('Y-m-d') : $endDate,
         ]);
 
         return new Change($data);
