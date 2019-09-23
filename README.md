@@ -58,14 +58,16 @@ Following example will fetch live rates from USD to EUR.
 $client->source('USD')->currency('EUR')->quotes();
 ```
 
-You can also pass multiple rate currencies to `currency()` method as an array:
+You can also pass multiple rate currencies to `currency()` method:
 
 ```php
+$client->source('USD')->currency('EUR', 'AUD')->quotes();
+// you can also pass currencies as an array
 $client->source('USD')->currency(['EUR', 'AUD'])->quotes();
 ```
 
 If you want fetch rates for specific date, you can pass the date to `date()` method.
-`date()` method accepts dates as string or instance of `DateTimeImmutable`.
+`date()` method accepts dates as string or instance of `DateTimeInterface`.
 
 ```php
 $client->source('USD')->currency('EUR')->date('2019-05-20')->quotes();
@@ -77,7 +79,7 @@ This class has following methods that you can use:
 * `getSource()` - Returns source currency (for example, `USD`)
 * `getTimestamp()` - Returns timestamp value from currencylayer API (for example, `1432400348`)
 * `getQuotes()` - Returns array of quotes from currencylayer API
-* `getDate()` - Returns `DateTimeImmutable` date. If you fetched live rates this method will return `null`
+* `getDate()` - Returns `DateTimeInterface` date. If you fetched live rates this method will return `null`
 
 You can also get rates for each fetched currency using currency name as property:
 
@@ -100,7 +102,7 @@ $client->source('USD')->currency('GBP')->convert(10);
 ```
 
 If you want conversion based on different date's rates, you can pass the date to `date()` method.
-`date()` method accepts dates as string or instance of `DateTimeImmutable`.
+`date()` method accepts dates as string or instance of `DateTimeInterface`.
 
 ```php
 $client->source('USD')->currency('GBP')->date('2019-05-20')->convert(10);
@@ -115,13 +117,39 @@ This class has following methods that you can use:
 * `getAmount()` - Returns amount that passed to `convert()` method (for example, `10`)
 * `getQuote()` - Returns quote between source and target currencies (for example, `0.658443`)
 * `getResult()` - Returns conversion result (for example `6.58443`)
-* `getDate()` - Returns `DateTimeImmutable` date. If you fetched live rates this method will return `null`
+* `getDate()` - Returns `DateTimeInterface` date. If you fetched live rates this method will return `null`
 
 ### `timeframe()`
 
+Use this method to show rates between given dates.
 
+Pass source currency to `source()` method, rate currencies to `currency()` method and 
+start date as first argument and end date as second argument to `timeframe()` method.
+Start and end dates can be string of dates or instances of `DateTimeInterface`.
 
+Following example will return timeframe rates from USD to GBP and EUR between `2010-03-01` and `2010-04-01`.
 
+```php
+$client->source('USD')->currency('GBP', 'EUR')->timeframe('2010-03-01', '2010-04-01');
+```
+
+`timeframe()` method returns instance of `Orkhanahmadov\Currencylayer\Data\Timeframe`.
+This class has following methods that you can use:
+
+* `getSource()` - Returns source currency (for example, `USD`)
+* `getStartDate()` - Returns `DateTimeInterface` start date
+* `getEndDate()` - Returns `DateTimeInterface` start date
+* `getQuotes()` - Returns array quotes grouped by each day between start and end date
+* `quotes()` - Accepts string date or instance of `DateTimeInterface` and returns rates for that day
+
+You can also use currency code as function call and pass date to get rates:
+
+```php
+$timeframe = $client->source('USD')->currency('GBP', 'EUR')->timeframe('2010-03-01', '2010-04-01');
+
+$timeframe->GBP('2010-03-15'); // returns USD to GBP rate for 2010-03-15
+$timeframe->EUR('2010-03-20'); // returns USD to EUR rate for 2010-03-20
+```
 
 ### `change()`
 

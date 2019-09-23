@@ -15,11 +15,11 @@ class Change
      */
     private $quotes;
     /**
-     * @var \DateTimeImmutable
+     * @var \DateTimeInterface
      */
     private $startDate;
     /**
-     * @var \DateTimeImmutable
+     * @var \DateTimeInterface
      */
     private $endDate;
 
@@ -55,17 +55,17 @@ class Change
     }
 
     /**
-     * @return \DateTimeImmutable
+     * @return \DateTimeInterface
      */
-    public function getStartDate(): \DateTimeImmutable
+    public function getStartDate(): \DateTimeInterface
     {
         return $this->startDate;
     }
 
     /**
-     * @return \DateTimeImmutable
+     * @return \DateTimeInterface
      */
-    public function getEndDate(): \DateTimeImmutable
+    public function getEndDate(): \DateTimeInterface
     {
         return $this->endDate;
     }

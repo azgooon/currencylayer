@@ -25,13 +25,13 @@ class ChangeTest extends TestCase
 
     public function testGetStartDate()
     {
-        $this->assertInstanceOf(\DateTimeImmutable::class, $this->class->getStartDate());
+        $this->assertInstanceOf(\DateTimeInterface::class, $this->class->getStartDate());
         $this->assertSame('2005-01-01', $this->class->getStartDate()->format('Y-m-d'));
     }
 
     public function testGetEndDate()
     {
-        $this->assertInstanceOf(\DateTimeImmutable::class, $this->class->getEndDate());
+        $this->assertInstanceOf(\DateTimeInterface::class, $this->class->getEndDate());
         $this->assertSame('2010-01-01', $this->class->getEndDate()->format('Y-m-d'));
     }
 

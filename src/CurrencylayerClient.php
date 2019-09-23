@@ -29,7 +29,7 @@ class CurrencylayerClient implements Client
      */
     private $currencies;
     /**
-     * @var \DateTimeImmutable|null
+     * @var \DateTimeInterface|null
      */
     private $date = null;
 
@@ -70,14 +70,14 @@ class CurrencylayerClient implements Client
         if (is_array($currency)) {
             $this->currencies = implode(',', $currency);
         } else {
-            $this->currencies = $currency;
+            $this->currencies = implode(',', func_get_args());
         }
 
         return $this;
     }
 
     /**
-     * @param \DateTimeImmutable|string $date
+     * @param \DateTimeInterface|string $date
      *
      * @throws \Exception
      *
@@ -85,7 +85,7 @@ class CurrencylayerClient implements Client
      */
     public function date($date): Client
     {
-        $this->date = $date instanceof \DateTimeImmutable ? $date : new CarbonImmutable($date);
+        $this->date = $date instanceof \DateTimeInterface ? $date : new CarbonImmutable($date);
 
         return $this;
     }
@@ -140,8 +140,8 @@ class CurrencylayerClient implements Client
     /**
      * @throws \Exception
      *
-     * @param \DateTimeImmutable|string $startDate
-     * @param \DateTimeImmutable|string $endDate
+     * @param \DateTimeInterface|string $startDate
+     * @param \DateTimeInterface|string $endDate
      *
      * @return Timeframe
      */
@@ -150,8 +150,8 @@ class CurrencylayerClient implements Client
         $data = $this->request('timeframe', [
             'source'     => $this->source,
             'currencies' => $this->currencies,
-            'start_date' => $startDate instanceof \DateTimeImmutable ? $startDate->format('Y-m-d') : $startDate,
-            'end_date'   => $endDate instanceof \DateTimeImmutable ? $endDate->format('Y-m-d') : $endDate,
+            'start_date' => $startDate instanceof \DateTimeInterface ? $startDate->format('Y-m-d') : $startDate,
+            'end_date'   => $endDate instanceof \DateTimeInterface ? $endDate->format('Y-m-d') : $endDate,
         ]);
 
         return new Timeframe($data);
@@ -160,8 +160,8 @@ class CurrencylayerClient implements Client
     /**
      * @throws \Exception
      *
-     * @param \DateTimeImmutable|string $startDate
-     * @param \DateTimeImmutable|string $endDate
+     * @param \DateTimeInterface|string $startDate
+     * @param \DateTimeInterface|string $endDate
      *
      * @return Change
      */
@@ -170,8 +170,8 @@ class CurrencylayerClient implements Client
         $data = $this->request('change', [
             'source'     => $this->source,
             'currencies' => $this->currencies,
-            'start_date' => $startDate instanceof \DateTimeImmutable ? $startDate->format('Y-m-d') : $startDate,
-            'end_date'   => $endDate instanceof \DateTimeImmutable ? $endDate->format('Y-m-d') : $endDate,
+            'start_date' => $startDate instanceof \DateTimeInterface ? $startDate->format('Y-m-d') : $startDate,
+            'end_date'   => $endDate instanceof \DateTimeInterface ? $endDate->format('Y-m-d') : $endDate,
         ]);
 
         return new Change($data);

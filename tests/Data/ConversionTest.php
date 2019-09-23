@@ -26,7 +26,7 @@ class ConversionTest extends TestCase
     {
         $class = new Conversion(json_decode($this->jsonFixture('convert/historical'), true));
 
-        $this->assertInstanceOf(\DateTimeImmutable::class, $class->getDate());
+        $this->assertInstanceOf(\DateTimeInterface::class, $class->getDate());
         $this->assertSame('2005-01-01', $class->getDate()->format('Y-m-d'));
     }
 

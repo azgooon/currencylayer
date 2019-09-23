@@ -19,7 +19,7 @@ class Quotes
      */
     private $timestamp;
     /**
-     * @var \DateTimeImmutable|null
+     * @var \DateTimeInterface|null
      */
     private $date = null;
 
@@ -63,9 +63,9 @@ class Quotes
     }
 
     /**
-     * @return \DateTimeImmutable|null
+     * @return \DateTimeInterface|null
      */
-    public function getDate(): ?\DateTimeImmutable
+    public function getDate(): ?\DateTimeInterface
     {
         return $this->date;
     }

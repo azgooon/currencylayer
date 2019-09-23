@@ -2,7 +2,6 @@
 
 namespace Orkhanahmadov\Currencylayer\Tests\Data;
 
-use Carbon\CarbonImmutable;
 use Orkhanahmadov\Currencylayer\Data\Timeframe;
 use Orkhanahmadov\Currencylayer\Tests\TestCase;
 
@@ -26,13 +25,13 @@ class TimeframeTest extends TestCase
 
     public function testGetStartDate()
     {
-        $this->assertInstanceOf(\DateTimeImmutable::class, $this->class->getStartDate());
+        $this->assertInstanceOf(\DateTimeInterface::class, $this->class->getStartDate());
         $this->assertSame('2010-03-01', $this->class->getStartDate()->format('Y-m-d'));
     }
 
     public function testGetEndDate()
     {
-        $this->assertInstanceOf(\DateTimeImmutable::class, $this->class->getEndDate());
+        $this->assertInstanceOf(\DateTimeInterface::class, $this->class->getEndDate());
         $this->assertSame('2010-03-02', $this->class->getEndDate()->format('Y-m-d'));
     }
 
@@ -41,9 +40,9 @@ class TimeframeTest extends TestCase
         $this->assertTrue(is_array($this->class->quotes('2010-03-02')));
     }
 
-    public function testQuotesWithDateTimeImmutable()
+    public function testQuotesWithDateTimeInterface()
     {
-        $this->assertTrue(is_array($this->class->quotes(new CarbonImmutable('2010-03-02'))));
+        $this->assertTrue(is_array($this->class->quotes(new \DateTime('2010-03-02'))));
     }
 
     public function testQuotesThrowsExceptionWhenDateIsNotAvailable()
@@ -57,6 +56,11 @@ class TimeframeTest extends TestCase
     public function testGetsCurrencyRate()
     {
         $this->assertSame(0.668827, $this->class->GBP('2010-03-02'));
+    }
+
+    public function testGetsCurrencyRateWithDateTimeInterface()
+    {
+        $this->assertSame(0.668827, $this->class->GBP(new \DateTime('2010-03-02')));
     }
 
     public function testMagicThrowsExceptionIfArgumentIsNotAvailable()

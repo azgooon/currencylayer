@@ -31,7 +31,7 @@ interface Client
     public function currency($currency): self;
 
     /**
-     * @param \DateTimeImmutable|string $date
+     * @param \DateTimeInterface|string $date
      *
      * @return $this
      */
@@ -50,16 +50,16 @@ interface Client
     public function convert($amount): Conversion;
 
     /**
-     * @param \DateTimeImmutable|string $startDate
-     * @param \DateTimeImmutable|string $endDate
+     * @param \DateTimeInterface|string $startDate
+     * @param \DateTimeInterface|string $endDate
      *
      * @return Timeframe
      */
     public function timeframe($startDate, $endDate): Timeframe;
 
     /**
-     * @param \DateTimeImmutable|string $startDate
-     * @param \DateTimeImmutable|string $endDate
+     * @param \DateTimeInterface|string $startDate
+     * @param \DateTimeInterface|string $endDate
      * @return Change
      */
     public function change($startDate, $endDate): Change;

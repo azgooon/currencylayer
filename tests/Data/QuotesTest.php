@@ -34,7 +34,7 @@ class QuotesTest extends TestCase
     {
         $class = new Quotes(json_decode($this->jsonFixture('historical/single'), true));
 
-        $this->assertInstanceOf(\DateTimeImmutable::class, $class->getDate());
+        $this->assertInstanceOf(\DateTimeInterface::class, $class->getDate());
         $this->assertSame('2005-02-01', $class->getDate()->format('Y-m-d'));
     }
 

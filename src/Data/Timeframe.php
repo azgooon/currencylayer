@@ -3,6 +3,7 @@
 namespace Orkhanahmadov\Currencylayer\Data;
 
 use Carbon\CarbonImmutable;
+use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 
 class Timeframe
 {
@@ -11,17 +12,17 @@ class Timeframe
      */
     private $source;
     /**
-     * @var array
-     */
-    private $quotes;
-    /**
-     * @var \DateTimeImmutable
+     * @var \DateTimeInterface
      */
     private $startDate;
     /**
-     * @var \DateTimeImmutable
+     * @var \DateTimeInterface
      */
     private $endDate;
+    /**
+     * @var array
+     */
+    private $quotes;
 
     /**
      * Timeframe constructor.
@@ -47,6 +48,22 @@ class Timeframe
     }
 
     /**
+     * @return \DateTimeInterface
+     */
+    public function getStartDate(): \DateTimeInterface
+    {
+        return $this->startDate;
+    }
+
+    /**
+     * @return \DateTimeInterface
+     */
+    public function getEndDate(): \DateTimeInterface
+    {
+        return $this->endDate;
+    }
+
+    /**
      * @return array
      */
     public function getQuotes(): array
@@ -55,23 +72,7 @@ class Timeframe
     }
 
     /**
-     * @return \DateTimeImmutable
-     */
-    public function getStartDate(): \DateTimeImmutable
-    {
-        return $this->startDate;
-    }
-
-    /**
-     * @return \DateTimeImmutable
-     */
-    public function getEndDate(): \DateTimeImmutable
-    {
-        return $this->endDate;
-    }
-
-    /**
-     * @param \DateTimeImmutable|string $date
+     * @param \DateTimeInterface|string $date
      *
      * @throws \Exception
      *
@@ -79,7 +80,7 @@ class Timeframe
      */
     public function quotes($date): array
     {
-        $date = $date instanceof \DateTimeImmutable ?
+        $date = $date instanceof \DateTimeInterface ?
             $date->format('Y-m-d') :
             (new CarbonImmutable($date))->format('Y-m-d');
 
@@ -100,13 +101,19 @@ class Timeframe
      */
     public function __call(string $name, $arguments): float
     {
+        if (isset($arguments[0])) {
+            $date = $arguments[0] instanceof \DateTimeInterface ?
+                $arguments[0]->format('Y-m-d') :
+                $arguments[0];
+        }
+
         $key = $this->source.$name;
-        if (!isset($arguments[0]) || !isset($this->quotes[$arguments[0]]) || !isset($this->quotes[$arguments[0]][$key])) {
+        if (!isset($date) || !isset($this->quotes[$date]) || !isset($this->quotes[$date][$key])) {
             throw new \InvalidArgumentException(
                 "{$name} currency or its argument is invalid. You sure you calling correct currency with correct date?"
             );
         }
 
-        return $this->quotes[$arguments[0]][$key];
+        return $this->quotes[$date][$key];
     }
 }
