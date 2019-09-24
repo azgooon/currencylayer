@@ -64,6 +64,24 @@ class HistoricalTest extends TestCase
         $this->assertSame(96.848753, $data->ALL);
     }
 
+    public function testWithDateTimeInterface()
+    {
+        $this->guzzler
+            ->expects($this->once())
+            ->get(self::API_HTTP_URL.'historical')
+            ->withQuery([
+                'access_key' => self::FAKE_ACCESS_KEY,
+                'date'       => '2005-02-01',
+                'source'     => 'USD',
+                'currencies' => 'AED',
+            ])
+            ->willRespond(new Response(200, [], $this->jsonFixture('historical/single')));
+
+        $data = $this->client->source('USD')->currency('AED')->date(new \DateTimeImmutable('2005-02-01'))->quotes();
+
+        $this->assertSame('2005-02-01', $data->getDate()->format('Y-m-d'));
+    }
+
     protected function setUp(): void
     {
         parent::setUp();

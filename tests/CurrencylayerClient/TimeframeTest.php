@@ -43,6 +43,27 @@ class TimeframeTest extends TestCase
         $this->assertSame('2010-03-02', $data->getEndDate()->format('Y-m-d'));
     }
 
+    public function testWithDateTimeInterface()
+    {
+        $this->guzzler
+            ->expects($this->once())
+            ->get(self::API_HTTP_URL.'timeframe')
+            ->withQuery([
+                'access_key' => self::FAKE_ACCESS_KEY,
+                'start_date' => '2010-03-01',
+                'end_date'   => '2010-03-02',
+                'source'     => 'USD',
+                'currencies' => 'GBP,EUR',
+            ])
+            ->willRespond(new Response(200, [], $this->jsonFixture('timeframe')));
+
+        $data = $this->client->source('USD')->currency(['GBP', 'EUR'])
+            ->timeframe(new \DateTimeImmutable('2010-03-01'), new \DateTimeImmutable('2010-03-02'));
+
+        $this->assertSame('2010-03-01', $data->getStartDate()->format('Y-m-d'));
+        $this->assertSame('2010-03-02', $data->getEndDate()->format('Y-m-d'));
+    }
+
     protected function setUp(): void
     {
         parent::setUp();

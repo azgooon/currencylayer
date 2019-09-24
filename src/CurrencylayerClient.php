@@ -2,7 +2,6 @@
 
 namespace Orkhanahmadov\Currencylayer;
 
-use Carbon\CarbonImmutable;
 use GuzzleHttp\Client as Guzzle;
 use Orkhanahmadov\Currencylayer\Data\Change;
 use Orkhanahmadov\Currencylayer\Data\Conversion;
@@ -84,7 +83,9 @@ class CurrencylayerClient implements Client
      */
     public function date($date): Client
     {
-        $this->date = $date instanceof \DateTimeInterface ? $date : new CarbonImmutable($date);
+        $this->date = $date instanceof \DateTimeInterface ?
+            $date :
+            new \DateTimeImmutable($date);
 
         return $this;
     }
@@ -149,8 +150,12 @@ class CurrencylayerClient implements Client
         $data = $this->request('timeframe', [
             'source'     => $this->source,
             'currencies' => $this->currencies,
-            'start_date' => $startDate instanceof \DateTimeInterface ? $startDate->format('Y-m-d') : $startDate,
-            'end_date'   => $endDate instanceof \DateTimeInterface ? $endDate->format('Y-m-d') : $endDate,
+            'start_date' => $startDate instanceof \DateTimeInterface ?
+                $startDate->format('Y-m-d') :
+                $startDate,
+            'end_date'   => $endDate instanceof \DateTimeInterface ?
+                $endDate->format('Y-m-d') :
+                $endDate,
         ]);
 
         return new Timeframe($data);
@@ -169,8 +174,12 @@ class CurrencylayerClient implements Client
         $data = $this->request('change', [
             'source'     => $this->source,
             'currencies' => $this->currencies,
-            'start_date' => $startDate instanceof \DateTimeInterface ? $startDate->format('Y-m-d') : $startDate,
-            'end_date'   => $endDate instanceof \DateTimeInterface ? $endDate->format('Y-m-d') : $endDate,
+            'start_date' => $startDate instanceof \DateTimeInterface ?
+                $startDate->format('Y-m-d') :
+                $startDate,
+            'end_date'   => $endDate instanceof \DateTimeInterface ?
+                $endDate->format('Y-m-d') :
+                $endDate,
         ]);
 
         return new Change($data);

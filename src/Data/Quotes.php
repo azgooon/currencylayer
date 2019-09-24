@@ -2,8 +2,6 @@
 
 namespace Orkhanahmadov\Currencylayer\Data;
 
-use Carbon\CarbonImmutable;
-
 class Quotes
 {
     /**
@@ -35,7 +33,7 @@ class Quotes
         $this->source = $data['source'];
         $this->quotes = $data['quotes'];
         $this->timestamp = $data['timestamp'];
-        $this->date = isset($data['date']) ? new CarbonImmutable($data['date']) : null;
+        $this->date = isset($data['date']) ? new \DateTimeImmutable($data['date']) : null;
     }
 
     /**

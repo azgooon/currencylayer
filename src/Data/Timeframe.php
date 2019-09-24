@@ -2,8 +2,6 @@
 
 namespace Orkhanahmadov\Currencylayer\Data;
 
-use Carbon\CarbonImmutable;
-
 class Timeframe
 {
     /**
@@ -34,8 +32,8 @@ class Timeframe
     {
         $this->source = $data['source'];
         $this->quotes = $data['quotes'];
-        $this->startDate = new CarbonImmutable($data['start_date']);
-        $this->endDate = new CarbonImmutable($data['end_date']);
+        $this->startDate = new \DateTimeImmutable($data['start_date']);
+        $this->endDate = new \DateTimeImmutable($data['end_date']);
     }
 
     /**
@@ -81,7 +79,7 @@ class Timeframe
     {
         $date = $date instanceof \DateTimeInterface ?
             $date->format('Y-m-d') :
-            (new CarbonImmutable($date))->format('Y-m-d');
+            (new \DateTimeImmutable($date))->format('Y-m-d');
 
         if (!isset($this->quotes[$date])) {
             throw new \InvalidArgumentException(

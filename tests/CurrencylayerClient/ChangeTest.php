@@ -48,6 +48,28 @@ class ChangeTest extends TestCase
         $this->assertSame(17.5741, $data->changePercentage('MXN'));
     }
 
+    public function testWithDateTimeInterface()
+    {
+        $this->guzzler
+            ->expects($this->once())
+            ->get(self::API_HTTP_URL.'change')
+            ->withQuery([
+                'access_key' => self::FAKE_ACCESS_KEY,
+                'start_date' => '2005-01-01',
+                'end_date'   => '2010-01-01',
+                'source'     => 'USD',
+                'currencies' => 'AUD,EUR,MXN',
+            ])
+            ->willRespond(new Response(200, [], $this->jsonFixture('change')));
+
+        $data = $this->client->source('USD')->currency('AUD', 'EUR', 'MXN')
+            ->change(new \DateTimeImmutable('2005-01-01'), new \DateTimeImmutable('2010-01-01'));
+
+        $this->assertInstanceOf(Change::class, $data);
+        $this->assertSame('2005-01-01', $data->getStartDate()->format('Y-m-d'));
+        $this->assertSame('2010-01-01', $data->getEndDate()->format('Y-m-d'));
+    }
+
     protected function setUp(): void
     {
         parent::setUp();
