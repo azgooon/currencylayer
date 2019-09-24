@@ -44,9 +44,6 @@ $client = new CurrencylayerClient('your-access-key-here', true);
 
 ## Available methods
 
-### `list()`
-// todo
-
 ### `quotes()`
 
 Use this method to fetch live and historical currency rates.
@@ -176,6 +173,16 @@ This class has following methods that you can use:
 * `endRate()` - Accepts currency code as an argument and returns currency rate for given end date
 * `changeAmount()` - Accepts currency code as an argument and currency rate's change in amount
 * `changePercentage()` - Accepts currency code as an argument and currency rate's change in percentage
+
+### `list()`
+
+Use this method to get list of all available currencies.
+
+```php
+$client->list();
+```
+
+Method will return array of currencies in `currencyCode => currencyName` structure.
 
 ### Testing
 

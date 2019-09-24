@@ -9,13 +9,6 @@ use Orkhanahmadov\Currencylayer\Data\Timeframe;
 
 interface Client
 {
-//    /**
-//     * @param string $sourceCurrency
-//     *
-//     * @return $this
-//     */
-//    public function list(): self;
-
     /**
      * @param string $sourceCurrency
      *
@@ -64,4 +57,9 @@ interface Client
      * @return Change
      */
     public function change($startDate, $endDate): Change;
+
+    /**
+     * @return array
+     */
+    public function list(): array;
 }

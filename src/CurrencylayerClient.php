@@ -9,7 +9,6 @@ use Orkhanahmadov\Currencylayer\Data\Conversion;
 use Orkhanahmadov\Currencylayer\Data\Quotes;
 use Orkhanahmadov\Currencylayer\Data\Timeframe;
 
-// todo: list method
 class CurrencylayerClient implements Client
 {
     /**
@@ -175,6 +174,16 @@ class CurrencylayerClient implements Client
         ]);
 
         return new Change($data);
+    }
+
+    /**
+     * @return array
+     */
+    public function list(): array
+    {
+        $data = $this->request('list', []);
+
+        return $data['currencies'];
     }
 
     /**
