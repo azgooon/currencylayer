@@ -5,7 +5,6 @@ namespace Orkhanahmadov\Currencylayer\Tests\CurrencylayerClient;
 use BlastCloud\Guzzler\UsesGuzzler;
 use GuzzleHttp\Psr7\Response;
 use Orkhanahmadov\Currencylayer\CurrencylayerClient;
-use Orkhanahmadov\Currencylayer\Data\Quotes;
 use Orkhanahmadov\Currencylayer\Tests\TestCase;
 
 class ListTest extends TestCase
@@ -22,7 +21,7 @@ class ListTest extends TestCase
         $this->guzzler
             ->expects($this->once())
             ->get(self::API_HTTP_URL.'list')
-            ->withQuery(['access_key' => self::FAKE_ACCESS_KEY,])
+            ->withQuery(['access_key' => self::FAKE_ACCESS_KEY])
             ->willRespond(new Response(200, [], $this->jsonFixture('list')));
 
         $data = $this->client->list();
