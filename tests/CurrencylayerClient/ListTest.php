@@ -2,20 +2,11 @@
 
 namespace Orkhanahmadov\Currencylayer\Tests\CurrencylayerClient;
 
-use BlastCloud\Guzzler\UsesGuzzler;
 use GuzzleHttp\Psr7\Response;
-use Orkhanahmadov\Currencylayer\CurrencylayerClient;
 use Orkhanahmadov\Currencylayer\Tests\TestCase;
 
 class ListTest extends TestCase
 {
-    use UsesGuzzler;
-
-    /**
-     * @var CurrencylayerClient
-     */
-    private $client;
-
     public function test()
     {
         $this->guzzler
@@ -28,13 +19,5 @@ class ListTest extends TestCase
 
         $this->assertTrue(is_array($data));
         $this->assertCount(3, $data);
-    }
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->client = new CurrencylayerClient(self::FAKE_ACCESS_KEY);
-        $this->client->setClient($this->guzzler->getClient(['base_uri' => self::API_HTTP_URL]));
     }
 }

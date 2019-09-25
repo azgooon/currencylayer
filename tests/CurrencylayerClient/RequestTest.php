@@ -14,7 +14,10 @@ class RequestTest extends TestCase
     public function testSendsHttpsRequest()
     {
         $client = new CurrencylayerClient(self::FAKE_ACCESS_KEY, true);
-        $client->setClient($this->guzzler->getClient(['base_uri' => self::API_HTTPS_URL]));
+        $reflection = new \ReflectionClass(CurrencylayerClient::class);
+        $reflectionProp = $reflection->getProperty('client');
+        $reflectionProp->setAccessible(true);
+        $reflectionProp->setValue($client, $this->guzzler->getClient(['base_uri' => self::API_HTTP_URL]));
 
         $this->guzzler
             ->expects($this->once())
@@ -31,9 +34,6 @@ class RequestTest extends TestCase
 
     public function testThrowsExceptionIfAPIRequestsNonSuccessfulResponse()
     {
-        $client = new CurrencylayerClient(self::FAKE_ACCESS_KEY);
-        $client->setClient($this->guzzler->getClient(['base_uri' => self::API_HTTP_URL]));
-
         $this->guzzler
             ->expects($this->once())
             ->get(self::API_HTTP_URL.'live')
@@ -49,6 +49,6 @@ class RequestTest extends TestCase
             'You have not supplied a valid API Access Key. [Technical Support: support@apilayer.com]'
         );
 
-        $client->source('USD')->currency('EUR')->quotes();
+        $this->client->source('USD')->currency('EUR')->quotes();
     }
 }

@@ -2,21 +2,12 @@
 
 namespace Orkhanahmadov\Currencylayer\Tests\CurrencylayerClient;
 
-use BlastCloud\Guzzler\UsesGuzzler;
 use GuzzleHttp\Psr7\Response;
-use Orkhanahmadov\Currencylayer\CurrencylayerClient;
 use Orkhanahmadov\Currencylayer\Data\Conversion;
 use Orkhanahmadov\Currencylayer\Tests\TestCase;
 
 class ConvertTest extends TestCase
 {
-    use UsesGuzzler;
-
-    /**
-     * @var CurrencylayerClient
-     */
-    private $client;
-
     public function testConvertWithLiveQuotes()
     {
         $this->guzzler
@@ -73,13 +64,5 @@ class ConvertTest extends TestCase
         $this->expectExceptionMessage('Conversion "from" and "to" currencies were not set.');
 
         $this->client->convert(123);
-    }
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->client = new CurrencylayerClient(self::FAKE_ACCESS_KEY);
-        $this->client->setClient($this->guzzler->getClient(['base_uri' => self::API_HTTP_URL]));
     }
 }

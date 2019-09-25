@@ -2,21 +2,12 @@
 
 namespace Orkhanahmadov\Currencylayer\Tests\CurrencylayerClient;
 
-use BlastCloud\Guzzler\UsesGuzzler;
 use GuzzleHttp\Psr7\Response;
-use Orkhanahmadov\Currencylayer\CurrencylayerClient;
 use Orkhanahmadov\Currencylayer\Data\Quotes;
 use Orkhanahmadov\Currencylayer\Tests\TestCase;
 
 class LiveTest extends TestCase
 {
-    use UsesGuzzler;
-
-    /**
-     * @var CurrencylayerClient
-     */
-    private $client;
-
     public function testWithSingleCurrency()
     {
         $this->guzzler
@@ -58,13 +49,5 @@ class LiveTest extends TestCase
         $this->assertSame(1432400348, $data->getTimestamp());
         $this->assertSame(1.278342, $data->EUR);
         $this->assertSame(1.269072, $data->AUD);
-    }
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->client = new CurrencylayerClient(self::FAKE_ACCESS_KEY);
-        $this->client->setClient($this->guzzler->getClient(['base_uri' => self::API_HTTP_URL]));
     }
 }

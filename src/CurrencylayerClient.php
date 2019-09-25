@@ -215,12 +215,4 @@ class CurrencylayerClient implements Client
 
         return $data;
     }
-
-    /**
-     * @param Guzzle $client
-     */
-    public function setClient(Guzzle $client): void
-    {
-        $this->client = $client;
-    }
 }
