@@ -1,5 +1,3 @@
-# WIP
-
 # :currency_exchange: PHP client for [currencylayer.com](https://currencylayer.com)
 
 [![Latest Stable Version](https://poser.pugx.org/orkhanahmadov/currencylayer/v/stable)](https://packagist.org/packages/orkhanahmadov/currencylayer)
