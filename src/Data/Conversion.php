@@ -54,7 +54,7 @@ class Conversion
     /**
      * @return string
      */
-    public function getFromCurrency(): string
+    public function fromCurrency(): string
     {
         return $this->fromCurrency;
     }
@@ -62,7 +62,7 @@ class Conversion
     /**
      * @return string
      */
-    public function getToCurrency(): string
+    public function toCurrency(): string
     {
         return $this->toCurrency;
     }
@@ -70,7 +70,7 @@ class Conversion
     /**
      * @return \DateTimeInterface|null
      */
-    public function getDate(): ?\DateTimeInterface
+    public function date(): ?\DateTimeInterface
     {
         return $this->date;
     }
@@ -78,7 +78,7 @@ class Conversion
     /**
      * @return float|int
      */
-    public function getAmount()
+    public function amount()
     {
         return $this->amount;
     }
@@ -86,7 +86,7 @@ class Conversion
     /**
      * @return int
      */
-    public function getTimestamp(): int
+    public function timestamp(): int
     {
         return $this->timestamp;
     }
@@ -94,7 +94,7 @@ class Conversion
     /**
      * @return float
      */
-    public function getQuote(): float
+    public function quote(): float
     {
         return $this->quote;
     }
@@ -102,7 +102,7 @@ class Conversion
     /**
      * @return float
      */
-    public function getResult(): float
+    public function result(): float
     {
         return $this->result;
     }

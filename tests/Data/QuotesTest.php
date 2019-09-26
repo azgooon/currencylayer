@@ -14,33 +14,33 @@ class QuotesTest extends TestCase
 
     public function testGetSource()
     {
-        $this->assertSame('USD', $this->class->getSource());
+        $this->assertSame('USD', $this->class->source());
     }
 
     public function testGetQuotes()
     {
         $class = new Quotes(json_decode($this->jsonFixture('live/multiple'), true));
 
-        $this->assertTrue(is_array($class->getQuotes()));
-        $this->assertCount(2, $class->getQuotes());
+        $this->assertTrue(is_array($class->quotes()));
+        $this->assertCount(2, $class->quotes());
     }
 
     public function testGetTimestamp()
     {
-        $this->assertSame(1432400348, $this->class->getTimestamp());
+        $this->assertSame(1432400348, $this->class->timestamp());
     }
 
     public function testGetDate()
     {
         $class = new Quotes(json_decode($this->jsonFixture('historical/single'), true));
 
-        $this->assertInstanceOf(\DateTimeInterface::class, $class->getDate());
-        $this->assertSame('2005-02-01', $class->getDate()->format('Y-m-d'));
+        $this->assertInstanceOf(\DateTimeInterface::class, $class->date());
+        $this->assertSame('2005-02-01', $class->date()->format('Y-m-d'));
     }
 
     public function testGetDateWithNull()
     {
-        $this->assertNull($this->class->getDate());
+        $this->assertNull($this->class->date());
     }
 
     public function testGetsCurrencyRate()

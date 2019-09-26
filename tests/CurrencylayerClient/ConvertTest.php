@@ -24,12 +24,12 @@ class ConvertTest extends TestCase
         $data = $this->client->source('USD')->currency('GBP')->convert(10);
 
         $this->assertInstanceOf(Conversion::class, $data);
-        $this->assertSame('USD', $data->getFromCurrency());
-        $this->assertSame('GBP', $data->getToCurrency());
-        $this->assertSame(10, $data->getAmount());
-        $this->assertSame(1430068515, $data->getTimestamp());
-        $this->assertSame(0.658443, $data->getQuote());
-        $this->assertSame(6.58443, $data->getResult());
+        $this->assertSame('USD', $data->fromCurrency());
+        $this->assertSame('GBP', $data->toCurrency());
+        $this->assertSame(10, $data->amount());
+        $this->assertSame(1430068515, $data->timestamp());
+        $this->assertSame(0.658443, $data->quote());
+        $this->assertSame(6.58443, $data->result());
     }
 
     public function testConvertWithSpecificDateQuotes()
@@ -49,13 +49,13 @@ class ConvertTest extends TestCase
         $data = $this->client->source('USD')->currency('GBP')->date('2005-01-01')->convert(10);
 
         $this->assertInstanceOf(Conversion::class, $data);
-        $this->assertSame('USD', $data->getFromCurrency());
-        $this->assertSame('GBP', $data->getToCurrency());
-        $this->assertSame(10, $data->getAmount());
-        $this->assertSame(1104623999, $data->getTimestamp());
-        $this->assertSame(0.51961, $data->getQuote());
-        $this->assertSame(5.1961, $data->getResult());
-        $this->assertSame('2005-01-01', $data->getDate()->format('Y-m-d'));
+        $this->assertSame('USD', $data->fromCurrency());
+        $this->assertSame('GBP', $data->toCurrency());
+        $this->assertSame(10, $data->amount());
+        $this->assertSame(1104623999, $data->timestamp());
+        $this->assertSame(0.51961, $data->quote());
+        $this->assertSame(5.1961, $data->result());
+        $this->assertSame('2005-01-01', $data->date()->format('Y-m-d'));
     }
 
     public function testThrowsExceptionIfFromOrToCurrenciesNotAvailable()

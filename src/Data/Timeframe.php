@@ -39,7 +39,7 @@ class Timeframe
     /**
      * @return string
      */
-    public function getSource(): string
+    public function source(): string
     {
         return $this->source;
     }
@@ -47,7 +47,7 @@ class Timeframe
     /**
      * @return \DateTimeInterface
      */
-    public function getStartDate(): \DateTimeInterface
+    public function startDate(): \DateTimeInterface
     {
         return $this->startDate;
     }
@@ -55,7 +55,7 @@ class Timeframe
     /**
      * @return \DateTimeInterface
      */
-    public function getEndDate(): \DateTimeInterface
+    public function endDate(): \DateTimeInterface
     {
         return $this->endDate;
     }
@@ -63,7 +63,7 @@ class Timeframe
     /**
      * @return array
      */
-    public function getQuotes(): array
+    public function allQuotes(): array
     {
         return $this->quotes;
     }

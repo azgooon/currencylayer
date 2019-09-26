@@ -14,25 +14,25 @@ class ChangeTest extends TestCase
 
     public function testGetSource()
     {
-        $this->assertSame('USD', $this->class->getSource());
+        $this->assertSame('USD', $this->class->source());
     }
 
     public function testGetQuotes()
     {
-        $this->assertTrue(is_array($this->class->getQuotes()));
-        $this->assertCount(3, $this->class->getQuotes());
+        $this->assertTrue(is_array($this->class->quotes()));
+        $this->assertCount(3, $this->class->quotes());
     }
 
     public function testGetStartDate()
     {
-        $this->assertInstanceOf(\DateTimeInterface::class, $this->class->getStartDate());
-        $this->assertSame('2005-01-01', $this->class->getStartDate()->format('Y-m-d'));
+        $this->assertInstanceOf(\DateTimeInterface::class, $this->class->startDate());
+        $this->assertSame('2005-01-01', $this->class->startDate()->format('Y-m-d'));
     }
 
     public function testGetEndDate()
     {
-        $this->assertInstanceOf(\DateTimeInterface::class, $this->class->getEndDate());
-        $this->assertSame('2010-01-01', $this->class->getEndDate()->format('Y-m-d'));
+        $this->assertInstanceOf(\DateTimeInterface::class, $this->class->endDate());
+        $this->assertSame('2010-01-01', $this->class->endDate()->format('Y-m-d'));
     }
 
     public function testStartRate()
@@ -47,12 +47,12 @@ class ChangeTest extends TestCase
 
     public function testChangeAmount()
     {
-        $this->assertSame(1.9594, $this->class->changeAmount('MXN'));
+        $this->assertSame(1.9594, $this->class->amount('MXN'));
     }
 
     public function testChangePercentage()
     {
-        $this->assertSame(-5.2877, $this->class->changePercentage('EUR'));
+        $this->assertSame(-5.2877, $this->class->percentage('EUR'));
     }
 
     public function testThrowsExceptionIfCurrencyKeyIsNotAvailable()

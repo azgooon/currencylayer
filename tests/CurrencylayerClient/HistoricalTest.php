@@ -24,10 +24,10 @@ class HistoricalTest extends TestCase
         $data = $this->client->source('USD')->currency('AED')->date('2005-02-01')->quotes();
 
         $this->assertInstanceOf(Quotes::class, $data);
-        $this->assertSame('USD', $data->getSource());
-        $this->assertCount(1, $data->getQuotes());
-        $this->assertSame(1107302399, $data->getTimestamp());
-        $this->assertSame('2005-02-01', $data->getDate()->format('Y-m-d'));
+        $this->assertSame('USD', $data->source());
+        $this->assertCount(1, $data->quotes());
+        $this->assertSame(1107302399, $data->timestamp());
+        $this->assertSame('2005-02-01', $data->date()->format('Y-m-d'));
         $this->assertSame(3.67266, $data->AED);
     }
 
@@ -47,10 +47,10 @@ class HistoricalTest extends TestCase
         $data = $this->client->source('USD')->currency('AED', 'ALL')->date('2005-02-01')->quotes();
 
         $this->assertInstanceOf(Quotes::class, $data);
-        $this->assertSame('USD', $data->getSource());
-        $this->assertCount(2, $data->getQuotes());
-        $this->assertSame(1107302399, $data->getTimestamp());
-        $this->assertSame('2005-02-01', $data->getDate()->format('Y-m-d'));
+        $this->assertSame('USD', $data->source());
+        $this->assertCount(2, $data->quotes());
+        $this->assertSame(1107302399, $data->timestamp());
+        $this->assertSame('2005-02-01', $data->date()->format('Y-m-d'));
         $this->assertSame(3.67266, $data->AED);
         $this->assertSame(96.848753, $data->ALL);
     }
@@ -70,6 +70,6 @@ class HistoricalTest extends TestCase
 
         $data = $this->client->source('USD')->currency('AED')->date(new \DateTimeImmutable('2005-02-01'))->quotes();
 
-        $this->assertSame('2005-02-01', $data->getDate()->format('Y-m-d'));
+        $this->assertSame('2005-02-01', $data->date()->format('Y-m-d'));
     }
 }

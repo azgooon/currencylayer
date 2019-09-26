@@ -71,10 +71,10 @@ $client->source('USD')->currency('EUR')->date('2019-05-20')->quotes();
 `quotes()` method returns instance of `Orkhanahmadov\Currencylayer\Data\Quotes`.
 This class has following methods that you can use:
 
-* `getSource()` - Returns source currency (for example, `USD`)
-* `getTimestamp()` - Returns timestamp value from currencylayer API (for example, `1432400348`)
-* `getQuotes()` - Returns array of quotes from currencylayer API
-* `getDate()` - Returns `DateTimeInterface` date. If you fetched live rates this method will return `null`
+* `source()` - Returns source currency (for example, `USD`)
+* `timestamp()` - Returns timestamp value from currencylayer API (for example, `1432400348`)
+* `quotes()` - Returns array of quotes from currencylayer API
+* `date()` - Returns `DateTimeInterface` date. If you fetched live rates this method will return `null`
 
 You can also get rates for each fetched currency using currency name as property:
 
@@ -106,13 +106,13 @@ $client->source('USD')->currency('GBP')->date('2019-05-20')->convert(10);
 `convert()` method returns instance of `Orkhanahmadov\Currencylayer\Data\Conversion`.
 This class has following methods that you can use:
 
-* `getFromCurrency()` - Returns source currency (for example, `USD`)
-* `getToCurrency()` - Returns target currency (for example, `GBP`)
-* `getTimestamp()` - Returns timestamp value from currencylayer API (for example, `1432400348`)
-* `getAmount()` - Returns amount that passed to `convert()` method (for example, `10`)
-* `getQuote()` - Returns quote between source and target currencies (for example, `0.658443`)
-* `getResult()` - Returns conversion result (for example `6.58443`)
-* `getDate()` - Returns `DateTimeInterface` date. If you fetched live rates this method will return `null`
+* `fromCurrency()` - Returns source currency (for example, `USD`)
+* `toCurrency()` - Returns target currency (for example, `GBP`)
+* `timestamp()` - Returns timestamp value from currencylayer API (for example, `1432400348`)
+* `amount()` - Returns amount that passed to `convert()` method (for example, `10`)
+* `quote()` - Returns quote between source and target currencies (for example, `0.658443`)
+* `result()` - Returns conversion result (for example `6.58443`)
+* `date()` - Returns `DateTimeInterface` date. If you fetched live rates this method will return `null`
 
 ### `timeframe()`
 
@@ -131,10 +131,10 @@ $client->source('USD')->currency('GBP', 'EUR')->timeframe('2010-03-01', '2010-04
 `timeframe()` method returns instance of `Orkhanahmadov\Currencylayer\Data\Timeframe`.
 This class has following methods that you can use:
 
-* `getSource()` - Returns source currency (for example, `USD`)
-* `getStartDate()` - Returns `DateTimeInterface` start date
-* `getEndDate()` - Returns `DateTimeInterface` start date
-* `getQuotes()` - Returns array quotes grouped by each day between start and end date
+* `source()` - Returns source currency (for example, `USD`)
+* `startDate()` - Returns `DateTimeInterface` start date
+* `endDate()` - Returns `DateTimeInterface` start date
+* `allQuotes()` - Returns array quotes grouped by each day between start and end date
 * `quotes()` - Accepts string date or instance of `DateTimeInterface` and returns rates for that day
 
 You can also use currency code as function call and pass date to get rates:
@@ -163,14 +163,14 @@ $client->source('USD')->currency('GBP', 'EUR')->change('2010-03-01', '2010-04-01
 `change()` method returns instance of `Orkhanahmadov\Currencylayer\Data\Change`.
 This class has following methods that you can use:
 
-* `getSource()` - Returns source currency (for example, `USD`)
-* `getStartDate()` - Returns `DateTimeInterface` start date
-* `getEndDate()` - Returns `DateTimeInterface` start date
-* `getQuotes()` - Returns array of currency change rates between start and end date
-* `startRate()` - Accepts currency code as an argument and returns currency rate for given start date
+* `source()` - Returns source currency (for example, `USD`)
+* `startDate()` - Returns `DateTimeInterface` start date
+* `endDate()` - Returns `DateTimeInterface` start date
+* `quotes()` - Returns array of currency change rates between start and end date
+* `rate()` - Accepts currency code as an argument and returns currency rate for given start date
 * `endRate()` - Accepts currency code as an argument and returns currency rate for given end date
-* `changeAmount()` - Accepts currency code as an argument and currency rate's change in amount
-* `changePercentage()` - Accepts currency code as an argument and currency rate's change in percentage
+* `amount()` - Accepts currency code as an argument and currency rate's change in amount
+* `percentage()` - Accepts currency code as an argument and currency rate's change in percentage
 
 ### `list()`
 

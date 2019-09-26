@@ -39,7 +39,7 @@ class Quotes
     /**
      * @return string
      */
-    public function getSource(): string
+    public function source(): string
     {
         return $this->source;
     }
@@ -47,7 +47,7 @@ class Quotes
     /**
      * @return array
      */
-    public function getQuotes(): array
+    public function quotes(): array
     {
         return $this->quotes;
     }
@@ -55,7 +55,7 @@ class Quotes
     /**
      * @return int
      */
-    public function getTimestamp(): int
+    public function timestamp(): int
     {
         return $this->timestamp;
     }
@@ -63,7 +63,7 @@ class Quotes
     /**
      * @return \DateTimeInterface|null
      */
-    public function getDate(): ?\DateTimeInterface
+    public function date(): ?\DateTimeInterface
     {
         return $this->date;
     }

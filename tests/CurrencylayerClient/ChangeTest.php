@@ -25,18 +25,18 @@ class ChangeTest extends TestCase
         $data = $this->client->source('USD')->currency('AUD', 'EUR', 'MXN')->change('2005-01-01', '2010-01-01');
 
         $this->assertInstanceOf(Change::class, $data);
-        $this->assertSame('USD', $data->getSource());
-        $this->assertCount(3, $data->getQuotes());
-        $this->assertSame('2005-01-01', $data->getStartDate()->format('Y-m-d'));
-        $this->assertSame('2010-01-01', $data->getEndDate()->format('Y-m-d'));
+        $this->assertSame('USD', $data->source());
+        $this->assertCount(3, $data->quotes());
+        $this->assertSame('2005-01-01', $data->startDate()->format('Y-m-d'));
+        $this->assertSame('2010-01-01', $data->endDate()->format('Y-m-d'));
         $this->assertSame(1.281236, $data->startRate('AUD'));
         $this->assertSame(1.108609, $data->endRate('AUD'));
-        $this->assertSame(-0.1726, $data->changeAmount('AUD'));
-        $this->assertSame(-13.4735, $data->changePercentage('AUD'));
+        $this->assertSame(-0.1726, $data->amount('AUD'));
+        $this->assertSame(-13.4735, $data->percentage('AUD'));
         $this->assertSame(11.149362, $data->startRate('MXN'));
         $this->assertSame(13.108757, $data->endRate('MXN'));
-        $this->assertSame(1.9594, $data->changeAmount('MXN'));
-        $this->assertSame(17.5741, $data->changePercentage('MXN'));
+        $this->assertSame(1.9594, $data->amount('MXN'));
+        $this->assertSame(17.5741, $data->percentage('MXN'));
     }
 
     public function testWithDateTimeInterface()
@@ -57,7 +57,7 @@ class ChangeTest extends TestCase
             ->change(new \DateTimeImmutable('2005-01-01'), new \DateTimeImmutable('2010-01-01'));
 
         $this->assertInstanceOf(Change::class, $data);
-        $this->assertSame('2005-01-01', $data->getStartDate()->format('Y-m-d'));
-        $this->assertSame('2010-01-01', $data->getEndDate()->format('Y-m-d'));
+        $this->assertSame('2005-01-01', $data->startDate()->format('Y-m-d'));
+        $this->assertSame('2010-01-01', $data->endDate()->format('Y-m-d'));
     }
 }

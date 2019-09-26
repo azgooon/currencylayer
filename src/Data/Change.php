@@ -39,7 +39,7 @@ class Change
     /**
      * @return string
      */
-    public function getSource(): string
+    public function source(): string
     {
         return $this->source;
     }
@@ -47,7 +47,7 @@ class Change
     /**
      * @return \DateTimeInterface
      */
-    public function getStartDate(): \DateTimeInterface
+    public function startDate(): \DateTimeInterface
     {
         return $this->startDate;
     }
@@ -55,7 +55,7 @@ class Change
     /**
      * @return \DateTimeInterface
      */
-    public function getEndDate(): \DateTimeInterface
+    public function endDate(): \DateTimeInterface
     {
         return $this->endDate;
     }
@@ -63,7 +63,7 @@ class Change
     /**
      * @return array
      */
-    public function getQuotes(): array
+    public function quotes(): array
     {
         return $this->quotes;
     }
@@ -93,7 +93,7 @@ class Change
      *
      * @return float
      */
-    public function changeAmount(string $currency): float
+    public function amount(string $currency): float
     {
         return $this->quotes[$this->findKey($currency)]['change'];
     }
@@ -103,7 +103,7 @@ class Change
      *
      * @return float
      */
-    public function changePercentage(string $currency): float
+    public function percentage(string $currency): float
     {
         return $this->quotes[$this->findKey($currency)]['change_pct'];
     }

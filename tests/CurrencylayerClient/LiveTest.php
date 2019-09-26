@@ -23,9 +23,9 @@ class LiveTest extends TestCase
         $data = $this->client->source('USD')->currency('EUR')->quotes();
 
         $this->assertInstanceOf(Quotes::class, $data);
-        $this->assertSame('USD', $data->getSource());
-        $this->assertCount(1, $data->getQuotes());
-        $this->assertSame(1432400348, $data->getTimestamp());
+        $this->assertSame('USD', $data->source());
+        $this->assertCount(1, $data->quotes());
+        $this->assertSame(1432400348, $data->timestamp());
         $this->assertSame(1.278342, $data->EUR);
     }
 
@@ -44,9 +44,9 @@ class LiveTest extends TestCase
         $data = $this->client->source('USD')->currency('EUR', 'AUD')->quotes();
 
         $this->assertInstanceOf(Quotes::class, $data);
-        $this->assertSame('USD', $data->getSource());
-        $this->assertCount(2, $data->getQuotes());
-        $this->assertSame(1432400348, $data->getTimestamp());
+        $this->assertSame('USD', $data->source());
+        $this->assertCount(2, $data->quotes());
+        $this->assertSame(1432400348, $data->timestamp());
         $this->assertSame(1.278342, $data->EUR);
         $this->assertSame(1.269072, $data->AUD);
     }
