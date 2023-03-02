@@ -17,13 +17,13 @@
         }
     ],
     "require": {
-        "php": "^7.1",
+        "php": "^8.2",
         "ext-json": "*",
-        "guzzlehttp/guzzle": "^6.3"
+        "guzzlehttp/guzzle": "^7.4"
     },
     "require-dev": {
-        "blastcloud/guzzler": "^1.5",
-        "phpunit/phpunit": "^6.0|^7.0|^8.0"
+        "blastcloud/guzzler": "^2.0.3",
+        "phpunit/phpunit": "9.3.3"
     },
     "autoload": {
         "psr-4": {
