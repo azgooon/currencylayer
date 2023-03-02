@@ -1,12 +1,12 @@
 {
-    "name": "orkhanahmadov/currencylayer",
+    "name": "azgooon/currencylayer",
     "description": "PHP client for currencylayer.com",
     "keywords": [
         "orkhanahmadov",
         "currency",
         "currencylayer"
     ],
-    "homepage": "https://github.com/orkhanahmadov/currencylayer",
+    "homepage": "https://github.com/azgooon/currencylayer",
     "license": "MIT",
     "type": "library",
     "authors": [
@@ -27,12 +27,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Orkhanahmadov\\Currencylayer\\": "src"
+            "azgooon\\Currencylayer\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Orkhanahmadov\\Currencylayer\\Tests\\": "tests"
+            "azgooon\\Currencylayer\\Tests\\": "tests"
         }
     },
     "scripts": {
